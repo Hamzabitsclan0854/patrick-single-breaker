@@ -28,17 +28,18 @@ import {
   SwalHurray,
   SwalBreakerOn,
   SwalInitial,
+  SwalDisconnectedCorrupt,
 } from "../../Components/SwalModules";
 
 const RightNavBar = (props) => {
   const { id } = useParams();
 
-  console.log(id);
+  // console.log(id);
   const dispatch = useDispatch();
   let navigate = useNavigate();
   const location = useLocation().pathname;
 
-  console.log(location);
+  // console.log(location);
 
   const [showAttic, setShowAttic] = useState(false);
   const [showFirstFloor, setshowFirstFloor] = useState(false);
@@ -368,7 +369,6 @@ const RightNavBar = (props) => {
         props.wholeCorruptDevice === rand
       ) {
         SwalInitial();
-        console.log("hit not location-----------------------------");
       } else {
         props.setFirstGroupBreakerType("red");
         props.setIsFirstGroupBreaker(true);
@@ -513,7 +513,11 @@ const RightNavBar = (props) => {
             props.kitchenOven === "disconnect" &&
             props.kitchenToster === "disconnect"
           ) {
+            // if (props.wholeCorruptDevice === rand) {
+            //   SwalDisconnectedCorrupt();
+            // } else {
             SwalBreakerOn();
+            // }
           }
 
           //start my code for breaker pop up
@@ -1874,7 +1878,7 @@ const RightNavBar = (props) => {
             // setshowGroundFloor(true)
 
             navigate("/ground-floor");
-            console.log("on ground floor");
+            // console.log("on ground floor");
           }}
           onMouseEnter={() => setBtnHover("groundFloor")}
           onMouseLeave={() => setBtnHover("")}
