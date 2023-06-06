@@ -2,7 +2,7 @@
   background: #CC664A;
   background: linear-gradient(360deg, #CC664A 0%, #cf7359 35%, #FCC184 100%);
   height: 100vh;
-  overflow-y: scroll;
+  overflow-y: scroll !important;
 }
 .navbar-background::-webkit-scrollbar {
   width: 0px;
