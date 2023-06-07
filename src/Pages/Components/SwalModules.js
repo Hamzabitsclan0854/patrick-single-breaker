@@ -48,7 +48,7 @@ export const SwalDisconnected = () => {
   Swal.fire({
     confirmButtonColor: "#085CA8",
     confirmButtonText: "I Understand",
-    title: "Push the breaker!",
+    title: "Hook the breaker!",
     text: "You have disconnected all devices of the group from the socket.",
   });
 };

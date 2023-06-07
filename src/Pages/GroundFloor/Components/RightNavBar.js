@@ -136,37 +136,18 @@ const RightNavBar = (props) => {
       dispatch(isHurray(false));
     }, 3000);
 
-    setTimeout(() => {
-      SwalHurray("one", "one");
-    }, 30);
+    // setTimeout(() => {
+    //   SwalHurray("one", "one");
+    // }, 30);
 
     setTimeout(() => {
       props.setFirstGroupBreakerType("red");
       props.setIsFirstGroupBreaker(true);
     }, 3000);
+    navigate("/congratulation");
   };
 
   const groupFirstBreakerHandlerOff = () => {
-    // console.log("Hit first breaker handler");
-    // console.log(rand);
-
-    // const items = [
-    //   props.toiletFan,
-    //   props.toiletLight,
-    //   props.hallLamp,
-    //   props.hallLight01,
-    //   props.hallLight02,
-    //   props.livingRadio,
-    //   props.livingLight01,
-    //   props.livingAC,
-    //   props.livingLight03,
-    // ];
-
-    // if (rand >= 1 && rand <= 9 && items[rand - 1] == "connected") {
-    //   SwalInitial();
-    //   console.log(rand + " inside the condition");
-    //   return;
-    // }
     if (
       location === "/ground-floor" ||
       location === "/ground-floor/toilet" ||
@@ -404,14 +385,15 @@ const RightNavBar = (props) => {
       dispatch(isHurray(false));
     }, 3000);
 
-    setTimeout(() => {
-      SwalHurray("one", "one");
-    }, 30);
+    // setTimeout(() => {
+    //   SwalHurray("one", "one");
+    // }, 30);
 
     setTimeout(() => {
       props.setKitchenBreakerType("red");
       props.setIsKitchenBreaker(true);
     }, 3000);
+    navigate("/congratulation");
   };
 
   // const kitchencolor = useSelector(
@@ -513,11 +495,7 @@ const RightNavBar = (props) => {
             props.kitchenOven === "disconnect" &&
             props.kitchenToster === "disconnect"
           ) {
-            // if (props.wholeCorruptDevice === rand) {
-            //   SwalDisconnectedCorrupt();
-            // } else {
             SwalBreakerOn();
-            // }
           }
 
           //start my code for breaker pop up
@@ -554,6 +532,18 @@ const RightNavBar = (props) => {
         props.setIsKitchenBreaker(true);
       }
     } else {
+      // if (
+      //   !(props.wholeCorruptDevice >= 10) &&
+      //   !(props.wholeCorruptDevice <= 15) &&
+      //   props.wholeCorruptDevice === rand
+      // ) {
+      //   props.setKitchenBreakerType("red");
+      //   props.setIsKitchenBreaker(true);
+      // } else {
+      //   SwalInitial();
+      //   props.setKitchenBreakerType("black");
+      //   props.setIsKitchenBreaker(false);
+      // }
       if (
         props.wholeCorruptDevice >= 10 &&
         props.wholeCorruptDevice <= 15 &&
@@ -583,14 +573,15 @@ const RightNavBar = (props) => {
       dispatch(isHurray(false));
     }, 3000);
 
-    setTimeout(() => {
-      SwalHurray("one", "one");
-    }, 30);
+    // setTimeout(() => {
+    //   SwalHurray("one", "one");
+    // }, 30);
 
     setTimeout(() => {
       props.setGroupThreeBreakerType("red");
       props.setIsGroupThreeBreaker(true);
     }, 3000);
+    navigate("/congratulation");
   };
   const groupThreeBreakerHandlerOff = () => {
     if (
@@ -822,14 +813,15 @@ const RightNavBar = (props) => {
       dispatch(isHurray(false));
     }, 3000);
 
-    setTimeout(() => {
-      SwalHurray("one", "one");
-    }, 30);
+    // setTimeout(() => {
+    //   SwalHurray("one", "one");
+    // }, 30);
 
     setTimeout(() => {
       props.setGroupFourBreakerType("red");
       props.setIsGroupFourBreaker(true);
     }, 3000);
+    navigate("/congratulation");
   };
   const groupFourBreakerHandlerOff = () => {
     if (
@@ -1082,14 +1074,15 @@ const RightNavBar = (props) => {
       dispatch(isHurray(false));
     }, 3000);
 
-    setTimeout(() => {
-      SwalHurray("one", "one");
-    }, 30);
+    // setTimeout(() => {
+    //   SwalHurray("one", "one");
+    // }, 30);
 
     setTimeout(() => {
       props.setgroupFiveBreakerType("red");
       props.setIsGroupFiveBreaker(true);
     }, 3000);
+    navigate("/congratulation");
   };
 
   const groupFifthBreakerHandlerOff = () => {
@@ -1404,14 +1397,15 @@ const RightNavBar = (props) => {
       dispatch(isHurray(false));
     }, 3000);
 
-    setTimeout(() => {
-      SwalHurray("one", "one");
-    }, 30);
+    // setTimeout(() => {
+    //   SwalHurray("one", "one");
+    // }, 30);
 
     setTimeout(() => {
       props.setLaundaryBreakerType("red");
       props.setIsLaundaryBreaker(true);
     }, 3000);
+    navigate("/congratulation");
   };
 
   const laundaryBreakerHandlerOff = () => {

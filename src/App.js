@@ -20,9 +20,11 @@ import StorageRoomIndex from "./Pages/Attic/Component/StorageRoomIndex";
 import LaundaryIndex from "./Pages/Attic/Component/LaundaryIndex";
 import LivingRoomOneIndex from "./Pages/FirstFloor/Components/LivingRoomOneIndex";
 import GuestRoomIndexAttic from "./Pages/Attic/Component/GuestRoomIndexAttic";
+import Congratulation from "./Pages/Congratulation/Congratulation";
 import {
   SwalBreakerOff,
   SwalDisconnected,
+  SwalDisconnectedCorrupt,
 } from "./Pages/Components/SwalModules";
 
 function App() {
@@ -85,7 +87,11 @@ function App() {
       livingAC === "disconnect" &&
       livingLight03 === "disconnect"
     ) {
-      SwalDisconnected();
+      if (rndAll >= 1 && rndAll <= 9) {
+        SwalDisconnectedCorrupt();
+      } else {
+        SwalDisconnected();
+      }
     }
   }, [
     toiletFan,
@@ -131,7 +137,11 @@ function App() {
       kitchenOven === "disconnect" &&
       kitchenToster === "disconnect"
     ) {
-      SwalDisconnected();
+      if (rndAll >= 10 && rndAll <= 15) {
+        SwalDisconnectedCorrupt();
+      } else {
+        SwalDisconnected();
+      }
     }
   }, [
     kitchenLight01,
@@ -182,7 +192,11 @@ function App() {
       livingTwoLignt02 === "disconnect" &&
       livingTwoFan === "disconnect"
     ) {
-      SwalDisconnected();
+      if (rndAll >= 16 && rndAll <= 24) {
+        SwalDisconnectedCorrupt();
+      } else {
+        SwalDisconnected();
+      }
     }
   }, [
     livingOneLignt01,
@@ -239,7 +253,11 @@ function App() {
       toiletFanFirst === "disconnect" &&
       toiletLight03 === "disconnect"
     ) {
-      SwalDisconnected();
+      if (rndAll >= 25 && rndAll <= 34) {
+        SwalDisconnectedCorrupt();
+      } else {
+        SwalDisconnected();
+      }
     }
   }, [
     hallLedTv,
@@ -305,7 +323,11 @@ function App() {
       livingOneLignt03Five === "disconnect" &&
       livingOneLignt02Five === "disconnect"
     ) {
-      SwalDisconnected();
+      if (rndAll >= 35 && rndAll <= 46) {
+        SwalDisconnectedCorrupt();
+      } else {
+        SwalDisconnected();
+      }
     }
   }, [
     hallLampFive,
@@ -351,7 +373,11 @@ function App() {
       laundaryLight01 === "disconnect" &&
       laundaryLight02 === "disconnect"
     ) {
-      SwalDisconnected();
+      if (rndAll >= 47 && rndAll <= 49) {
+        SwalDisconnectedCorrupt();
+      } else {
+        SwalDisconnected();
+      }
     }
   }, [laundaryWashing, laundaryLight01, laundaryLight02]);
 
@@ -565,6 +591,7 @@ function App() {
             }
           />
           <Route path="/mask-group" element={<MaskGroup />} />
+          <Route path="/congratulation" element={<Congratulation />} />
           <Route
             path="/first-floor"
             element={
