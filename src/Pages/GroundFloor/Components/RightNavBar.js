@@ -344,16 +344,11 @@ const RightNavBar = (props) => {
         // console.log("run")
       }
     } else {
-      if (
-        props.wholeCorruptDevice >= 1 &&
-        props.wholeCorruptDevice <= 9 &&
-        props.wholeCorruptDevice === rand
-      ) {
+      if (rand >= 1 && rand <= 9) {
         SwalInitial();
       } else {
         props.setFirstGroupBreakerType("red");
         props.setIsFirstGroupBreaker(true);
-        // firstGroupPass();
       }
     }
     // console.log("handle on")
@@ -532,23 +527,7 @@ const RightNavBar = (props) => {
         props.setIsKitchenBreaker(true);
       }
     } else {
-      // if (
-      //   !(props.wholeCorruptDevice >= 10) &&
-      //   !(props.wholeCorruptDevice <= 15) &&
-      //   props.wholeCorruptDevice === rand
-      // ) {
-      //   props.setKitchenBreakerType("red");
-      //   props.setIsKitchenBreaker(true);
-      // } else {
-      //   SwalInitial();
-      //   props.setKitchenBreakerType("black");
-      //   props.setIsKitchenBreaker(false);
-      // }
-      if (
-        props.wholeCorruptDevice >= 10 &&
-        props.wholeCorruptDevice <= 15 &&
-        props.wholeCorruptDevice === rand
-      ) {
+      if (rand >= 10 && rand <= 15) {
         SwalInitial();
       } else {
         props.setKitchenBreakerType("red");
@@ -783,11 +762,7 @@ const RightNavBar = (props) => {
         props.setIsGroupThreeBreaker(true);
       }
     } else {
-      if (
-        props.wholeCorruptDevice >= 16 &&
-        props.wholeCorruptDevice <= 24 &&
-        props.wholeCorruptDevice === rand
-      ) {
+      if (rand >= 16 && rand <= 24) {
         SwalInitial();
       } else {
         props.setGroupThreeBreakerType("red");
@@ -1046,11 +1021,7 @@ const RightNavBar = (props) => {
         props.setIsGroupFourBreaker(true);
       }
     } else {
-      if (
-        props.wholeCorruptDevice >= 25 &&
-        props.wholeCorruptDevice <= 34 &&
-        props.wholeCorruptDevice === rand
-      ) {
+      if (rand >= 25 && rand <= 34) {
         SwalInitial();
       } else {
         props.setGroupFourBreakerType("red");
@@ -1369,11 +1340,7 @@ const RightNavBar = (props) => {
         props.setIsGroupFiveBreaker(true);
       }
     } else {
-      if (
-        props.wholeCorruptDevice >= 35 &&
-        props.wholeCorruptDevice <= 46 &&
-        props.wholeCorruptDevice === rand
-      ) {
+      if (rand >= 35 && rand <= 46) {
         SwalInitial();
       } else {
         props.setgroupFiveBreakerType("red");
@@ -1479,11 +1446,7 @@ const RightNavBar = (props) => {
         props.setIsLaundaryBreaker(true);
       }
     } else {
-      if (
-        props.wholeCorruptDevice >= 47 &&
-        props.wholeCorruptDevice <= 49 &&
-        props.wholeCorruptDevice === rand
-      ) {
+      if (rand >= 47 && rand <= 49) {
         SwalInitial();
       } else {
         props.setLaundaryBreakerType("red");
