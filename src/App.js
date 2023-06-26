@@ -67,7 +67,8 @@ function App() {
   const [isFirstGroupBreaker, setIsFirstGroupBreaker] = useState(false);
 
   useEffect(() => {
-    setRndAll(Math.floor(Math.random() * 15) + 1);
+    setRndAll(Math.floor(Math.random() * 49) + 1);
+    // 49
   }, []);
   useEffect(() => {
     setAllCorruptDevice(rndAll);

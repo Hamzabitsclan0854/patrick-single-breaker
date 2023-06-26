@@ -14,6 +14,16 @@ export const SwalInitial = () => {
     confirmButtonText: "I Understand",
   });
 };
+export const FinishSwal = () => {
+  Swal.fire({
+    title: "Do you want to proceed it?",
+    // showConfirmButton: false,
+    text: "One device is not working properly you have to first disconnect all the devices",
+    buttons: true,
+    confirmButtonColor: "#085CA8",
+    confirmButtonText: "I Understand",
+  });
+};
 export const SwalStarter = () => {
   Swal.fire({
     title: "User Task",

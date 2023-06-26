@@ -29,6 +29,7 @@ import {
   SwalBreakerOn,
   SwalInitial,
   SwalDisconnectedCorrupt,
+  FinishSwal,
 } from "../../Components/SwalModules";
 
 const RightNavBar = (props) => {
@@ -368,9 +369,8 @@ const RightNavBar = (props) => {
   //   props.setIsModalOpen(true);
   //   dispatch(resultGroundFloor(props.groundFloorTrial));
   //   setTimeout(() => {
-  //     SwalHurray('four','two')
+  //     SwalHurray("four", "two");
   //   }, 30);
-
   // };
   const lastAssignmentPass = () => {
     dispatch(isHurray(true));
@@ -1460,7 +1460,36 @@ const RightNavBar = (props) => {
     props.setLaundaryBreakerType("black");
     props.setIsLaundaryBreaker(false);
   };
-
+  // ***********************************
+  // FINISH
+  // ***********************************
+  const finishBreakerHandler = () => {
+    FinishSwal();
+    // if (rand >= 1 && rand <= 49) {
+    //start my code for breaker pop up
+    // if (
+    //   (props.completeRnd === 1 && props.toiletFan === "connected") ||
+    //   (props.completeRnd === 2 && props.toiletLight == "connected") ||
+    //   (props.completeRnd === 3 && props.hallLamp === "connected") ||
+    //   (props.completeRnd === 4 && props.hallLight01 === "connected") ||
+    //   (props.completeRnd === 5 && props.hallLight02 === "connected") ||
+    //   (props.completeRnd === 6 && props.livingRadio === "connected") ||
+    //   (props.completeRnd === 7 && props.livingLight01 === "connected") ||
+    //   (props.completeRnd === 8 && props.livingAC === "connected") ||
+    //   (props.completeRnd === 9 && props.livingLight03 === "connected") ||
+    //   (props.rndKitchen === 10 && props.kitchenMixture === "connected") ||
+    //   (props.rndKitchen === 11 && props.kitchenOven === "connected") ||
+    //   (props.rndKitchen === 12 && props.kitchenLight01 === "connected") ||
+    //   (props.rndKitchen === 13 && props.kitchenLight02 === "connected") ||
+    //   (props.rndKitchen === 14 && props.kitchenLight03 === "connected") ||
+    //   (props.rndKitchen === 15 && props.kitchenToster === "connected")
+    // ) {
+    //   // props.setFirstGroupBreakerType("black");
+    //   // props.setIsFirstGroupBreaker(false);
+    //   SwalInitial();
+    // }
+    // }
+  };
   // console.log(props.kitchenBreakerType)
 
   // console.log(props.completeRnd,"-------------")
@@ -1609,18 +1638,6 @@ const RightNavBar = (props) => {
                           />
                         </button>
                       )
-                      // ) : (
-                      //     <button
-                      //       className="group-btn position-living font-height-width btn-shadow"
-                      //       onClick={kitchenBreakerHandlerOff}
-                      //     >
-                      //       <img
-                      //         src={breakerOffIMG}
-                      //         alt=""
-                      //         className="breakerImg"
-                      //       />
-                      //     </button>
-                      // )
                     }
                   </>
                   <>
@@ -1705,62 +1722,9 @@ const RightNavBar = (props) => {
                     </button>
                   )}
                 </>
-                {/* {props.groupGroundFloor === "GroupTwo" && location.pathname ==="/ground-floor/kitchen" ? ( */}
-                <>
-                  {/* {props.breaker === "kitchen" ? ( */}
-                  {/* <>
-                        {props.kitchenBreakerType === "black" ||
-                        props.rndKitchen === props.kitchenCorruptDevice ? (
-                          <button
-                            className="group-btn position-Kitchen font-height-width-groupB btn-shadow"
-                            onClick={groupFifthBreakerHandlerOff}
-                          >
-                            <img
-                              src={breakerOffIMG}
-                              alt=""
-                              className="breakerImg"
-                            />
-                          </button>
-                        ) : (
-                          <button
-                            className="group-btn position-Kitchen font-height-width-groupB btn-shadow"
-                            onClick={groupFifthBreakerHandlerOn}
-                          >
-                            <img
-                              src={breakerOnIMG}
-                              alt=""
-                              className="breakerImg"
-                            />
-                          </button>
-                        )}
-                      </> */}
-                  {/* ) : ( */}
-                  {/* <button
-                        className="group-btn position-Kitchen font-height-width-groupB "
-                        disabled={location.pathname !=="/ground-floor/kitchen"}
-
-                        onClick={() => {
-                          props.setBreaker("kitchen");
-                        }}
-                      >
-                        Kitchen
-                      </button> */}
-                  {/* )} */}
-                </>
-                {/*}) : (
-                  <button
-                    className="group-btn position-set2"
-                    onClick={() => props.setGroupGroundFloor("GroupTwo")}
-                  >
-                    Group 2
-                  </button>
-                )} */}
               </div>
             </>
           </div>
-          {/*// ) : (
-        //   ""
-        // )} */}
         </div>
         <h3 className="set-floor-title">Gound Floor</h3>
         <hr />
@@ -1841,6 +1805,11 @@ const RightNavBar = (props) => {
           onMouseLeave={() => setBtnHover("")}
         >
           Ground Floor
+        </button>
+      </div>
+      <div className="set-position-bottom-finish">
+        <button className="set-btn-finish" onClick={finishBreakerHandler}>
+          Finish
         </button>
       </div>
     </div>

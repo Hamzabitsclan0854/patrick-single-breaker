@@ -387,6 +387,23 @@
   font-size: 23px;
 }
 }
+.set-position-bottom-finish {
+  position: absolute;
+  bottom: 12px;
+  right: 24px;
+  z-index: 1000;
+}
+.set-btn-finish {
+  border: none;
+  color: white;
+  border-radius: 13px;
+  width: 157px;
+  font-family: 'Nunito', sans-serif;
+  height: 54px;
+  font-weight: 900;
+  font-size: 28px;
+  background: linear-gradient(360deg, #CC664A 10%, #cf7359 80%, #FCC184 97%);
+}
 /* @media (min-width: 1920px){
   .position-set1, .position-set2 {   
     left: 6.7%;
