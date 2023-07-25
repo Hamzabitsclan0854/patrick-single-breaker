@@ -7,34 +7,53 @@ import SilingFanOnIMG from "../images/SilingFanOnIMG.png";
 import SilingFanOnIMG_DD from "../images/SilingFanOnIMG_DD.png";
 import SilingFanOffIMG from "../images/SilingFanOffIMG.png";
 import LEDStudyRoomIMG from "../images/LEDStudyRoomIMG.png";
-import LampGuestRoom_D from "../images/LampGuestRoom_D.png"
+import LampGuestRoom_D from "../images/LampGuestRoom_D.png";
 import LEDStudyRoomIMGOn from "../images/LEDStudyRoomIMGOn.png";
-import LedOnIMG from "../images/LedOnIMG.png"
-import RadioOffIMG_D from "../images/RadioOffIMG_D.png"
+import LedOnIMG from "../images/LedOnIMG.png";
+import RadioOffIMG_D from "../images/RadioOffIMG_D.png";
 import { useNavigate } from "react-router-dom";
 import "./GuestRoom.css";
 import { useState, useEffect } from "react";
 import Swal from "sweetalert2";
 import useSound from "use-sound";
 import error from "../SoundEffects/error.mp3";
-import { SwalBreakerOff, SwalDisconnected,SwalInitial } from "../../../Components/SwalModules";
+import {
+  SwalBreakerOff,
+  SwalDisconnected,
+  SwalInitial,
+} from "../../../Components/SwalModules";
+import { useDispatch } from "react-redux";
+import {
+  increaseDeviceCounter,
+  connectDevice,
+  disconnectDevice,
+} from "../../../../Redux/Action";
 
 const GuestRoom = (props) => {
   const navigate = useNavigate();
+
+  const dispatch = useDispatch();
+  const dispatchdisconnect = useDispatch();
+  const dispatchconnect = useDispatch();
+
   const [errorSound] = useSound(error);
   const [hover, setHover] = useState("");
   const disconnectHandler = (val) => {
     if (val === 38) {
       props.setGuestLamp("disconnect");
+      dispatchdisconnect(disconnectDevice());
     }
     if (val === 39) {
       props.setGuestRadio("disconnect");
+      dispatchdisconnect(disconnectDevice());
     }
     if (val === 40) {
       props.setGuestFan("disconnect");
+      dispatchdisconnect(disconnectDevice());
     }
     if (val === 41) {
       props.setGuestLED("disconnect");
+      dispatchdisconnect(disconnectDevice());
     }
     if (props.rndGroupFive === val) {
       props.setGroupFiveCorruptDevice(0);
@@ -43,28 +62,32 @@ const GuestRoom = (props) => {
   };
 
   const connectHandler = (val) => {
-      if (props.rndGroupFive === val && props.groupFiveBreakerType === "red") {
-        props.setgroupFiveBreakerType('black')
-        props.setIsGroupFiveBreaker(false);
-        SwalBreakerOff()
-        errorSound();
-        props.setAtticTrial(props.atticTrial + 1);
-        localStorage.setItem('state-attic', JSON.stringify(props.atticTrial +1))
-      }
-      props.setGroupFiveCorruptDevice(val);
-      if (val === 38) {
-        props.setGuestLamp("connected");
-      }
-      if (val === 39) {
-        props.setGuestRadio("connected");
-      }
-      if (val === 40) {
-        props.setGuestFan("connected");
-      }
-      if (val === 41) {
-        props.setGuestLED("connected");
-      }
-  
+    if (props.rndGroupFive === val && props.groupFiveBreakerType === "red") {
+      props.setgroupFiveBreakerType("black");
+      props.setIsGroupFiveBreaker(false);
+      SwalBreakerOff();
+      dispatch(increaseDeviceCounter());
+      errorSound();
+      props.setAtticTrial(props.atticTrial + 1);
+      localStorage.setItem("state-attic", JSON.stringify(props.atticTrial + 1));
+    }
+    props.setGroupFiveCorruptDevice(val);
+    if (val === 38) {
+      props.setGuestLamp("connected");
+      dispatchconnect(connectDevice());
+    }
+    if (val === 39) {
+      props.setGuestRadio("connected");
+      dispatchconnect(connectDevice());
+    }
+    if (val === 40) {
+      props.setGuestFan("connected");
+      dispatchconnect(connectDevice());
+    }
+    if (val === 41) {
+      props.setGuestLED("connected");
+      dispatchconnect(connectDevice());
+    }
   };
   return (
     <>
@@ -83,21 +106,22 @@ const GuestRoom = (props) => {
           {/* image main div .......................  */}
           <div className=" d-flex img-div">
             {/* lamp div .............. */}
-            <div className={
-              props.isGroupFiveBreaker === true &&
-              props.guestLamp === "connected"
-              ?"div-lamp-guest-on"
-              :"div-lamp-guest"
-              }>
+            <div
+              className={
+                props.isGroupFiveBreaker === true &&
+                props.guestLamp === "connected"
+                  ? "div-lamp-guest-on"
+                  : "div-lamp-guest"
+              }
+            >
               <img
                 src={
                   props.isGroupFiveBreaker === true &&
                   props.guestLamp === "connected"
-
                     ? LampGuestRoomIMGOn
-                      : props.guestLamp === "disconnect"
-                      ? LampGuestRoom_D
-                      : LampGuestRoomIMG
+                    : props.guestLamp === "disconnect"
+                    ? LampGuestRoom_D
+                    : LampGuestRoomIMG
 
                   // ? LampGuestRoomIMG : props.guestLamp === "disconnect" ? LampGuestRoom_D
                   // : LampGuestRoom_D
@@ -148,17 +172,16 @@ const GuestRoom = (props) => {
                   src={
                     props.isGroupFiveBreaker === true &&
                     props.guestRadio === "connected"
-
                       ? RadioStudyRoomIMGOn
                       : props.guestRadio === "disconnect"
                       ? RadioOffIMG_D
                       : RadioStudyRoomIMG
 
-                      // ? RadioStudyRoomIMGOn
-                      // : RadioStudyRoomIMG
-                      // LampGuestRoom_D
-                      // ? RadioStudyRoomIMG : props.guestRadio === "disconnect" ? RadioOffIMG_D
-                      // : RadioStudyRoomIMG
+                    // ? RadioStudyRoomIMGOn
+                    // : RadioStudyRoomIMG
+                    // LampGuestRoom_D
+                    // ? RadioStudyRoomIMG : props.guestRadio === "disconnect" ? RadioOffIMG_D
+                    // : RadioStudyRoomIMG
                   }
                   // className={
                   //   props.guestRadio === "disconnect" ? "disconnected" : ""
@@ -189,33 +212,30 @@ const GuestRoom = (props) => {
               </>
             </div>
 
+            {/* start my code 12/29...................... */}
 
-             {/* start my code 12/29...................... */}
-
-         <button
+            <button
               // className={firstBtn === "attic" ? 'btn-01-maskGroup' : "btn-maskGroup mb-4 "}
               className={"btn-maskGroup set-attic-guest-back"}
-
               onMouseEnter={() => {
                 // setBtnPhase("attic")
                 // setfirstBtn('')
               }}
-            
               // onMouseLeave={()=> setBtnPhase("")}
               onClick={() => {
                 // setShowAttic(true)
                 navigate("/attic");
               }}
             >
-          Go Back
+              Go Back
             </button>
             {/* end my code 12/29...................... */}
-
 
             {/* silingfan div .............. */}
             <div
               className={
-                props.isGroupFiveBreaker === true && props.guestFan === "connected"
+                props.isGroupFiveBreaker === true &&
+                props.guestFan === "connected"
                   ? "div-fan-guest-on"
                   : "div-fan-guest"
               }
@@ -224,20 +244,23 @@ const GuestRoom = (props) => {
                 src={
                   props.isGroupFiveBreaker === true &&
                   props.guestFan === "connected"
+                    ? // ? SilingFanOnIMG
+                      //   : props.guestFan === "disconnect"
+                      //   ? SilingFanOnIMG_DD
+                      //   : SilingFanOffIMG
 
-                    // ? SilingFanOnIMG
-                    //   : props.guestFan === "disconnect"
-                    //   ? SilingFanOnIMG_DD
-                    //   : SilingFanOffIMG
-
-                    // ? SilingFanOnIMG
-                    // : SilingFanOffIMG
-                    ? SilingFanOnIMG : props.guestFan === "disconnect" ? SilingFanOnIMG_DD
+                      // ? SilingFanOnIMG
+                      // : SilingFanOffIMG
+                      SilingFanOnIMG
+                    : props.guestFan === "disconnect"
+                    ? SilingFanOnIMG_DD
                     : SilingFanOnIMG_DD
                 }
                 alt=""
                 className={
-                  props.guestFan === "disconnect" ? "disconnected-brightness" : ""
+                  props.guestFan === "disconnect"
+                    ? "disconnected-brightness"
+                    : ""
                 }
                 style={{
                   height:
@@ -270,7 +293,8 @@ const GuestRoom = (props) => {
             {/* LED div .............. */}
             <div
               className={
-                props.isGroupFiveBreaker === true && props.guestLED === "connected"
+                props.isGroupFiveBreaker === true &&
+                props.guestLED === "connected"
                   ? "div-LED-guest"
                   : "div-LED-guest"
               }
@@ -296,14 +320,16 @@ const GuestRoom = (props) => {
                 src={
                   props.isGroupFiveBreaker === true &&
                   props.guestLED === "connected"
-                    
-                    ? LEDStudyRoomIMGOn : props.guestLED === "disconnect" ? LEDStudyRoomIMG
-                      : LEDStudyRoomIMG
-                     
+                    ? LEDStudyRoomIMGOn
+                    : props.guestLED === "disconnect"
+                    ? LEDStudyRoomIMG
+                    : LEDStudyRoomIMG
                 }
                 alt=""
                 className={
-                  props.guestLED === "disconnect" ? "disconnected-brightness" : ""
+                  props.guestLED === "disconnect"
+                    ? "disconnected-brightness"
+                    : ""
                 }
                 style={{
                   height:

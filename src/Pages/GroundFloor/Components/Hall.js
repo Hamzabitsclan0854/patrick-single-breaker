@@ -7,6 +7,12 @@ import LampOffIMG from "../images/LampOffIMG.png";
 import LampOffIMG_D from "../images/LampOffIMG_D.png";
 import "./Hall.css";
 import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  increaseDeviceCounter,
+  connectDevice,
+  disconnectDevice,
+} from "../../../Redux/Action";
 import Swal from "sweetalert2";
 import useSound from "use-sound";
 import error from "../SoundEffects/error.mp3";
@@ -14,21 +20,33 @@ import { SwalBreakerOff, SwalDisconnected } from "../../Components/SwalModules";
 import { useNavigate } from "react-router-dom";
 
 const Hall = (props) => {
+  // const counterHall = useSelector((state) => state.CounterDeviceReducer.count);
+  // console.log(counterHall + " redux device counter");
+
+  const dispatch = useDispatch();
+  const dispatchdisconnect = useDispatch();
+  const dispatchconnect = useDispatch();
+
   const navigate = useNavigate();
 
   const [errorSound] = useSound(error);
 
   const [hover, setHover] = useState("");
 
+  const [corruptDevice, setCorruptDevice] = useState(1);
+
   const disconnectHandler = (val) => {
     if (val === 3) {
       props.setHallLamp("disconnect");
+      dispatchdisconnect(disconnectDevice());
     }
     if (val === 4) {
       props.setHallLight01("disconnect");
+      dispatchdisconnect(disconnectDevice());
     }
     if (val === 5) {
       props.setHallLight02("disconnect");
+      dispatchdisconnect(disconnectDevice());
     }
     if (props.completeRnd === val) {
       props.setCompleteCorruptDevice(0);
@@ -42,35 +60,29 @@ const Hall = (props) => {
 
       props.setIsFirstGroupBreaker(false);
       SwalBreakerOff();
+      // DISPATCH COUNTER REDUX
+      dispatch(increaseDeviceCounter());
       errorSound();
       props.setGroundFloorTrial(props.groundFloorTrial + 1);
       localStorage.setItem("state", JSON.stringify(props.groundFloorTrial + 1));
+
+      setCorruptDevice(corruptDevice + 1);
+      console.log(corruptDevice, "Heloo counter Corrupt");
     }
     props.setCompleteCorruptDevice(val);
     if (val === 3) {
       props.setHallLamp("connected");
+      dispatchconnect(connectDevice());
     }
     if (val === 4) {
       props.setHallLight01("connected");
+      dispatchconnect(connectDevice());
     }
     if (val === 5) {
       props.setHallLight02("connected");
+      dispatchconnect(connectDevice());
     }
   };
-  // useEffect(() => {
-  //   if (
-  //     props.hallLamp === "disconnect" &&
-  //     props.hallLight01 === "disconnect" &&
-  //     props.hallLight02 === "disconnect"
-  //   ) {
-  //    SwalDisconnected()
-  //   }
-  // }, [
-  //   props.hallLamp,
-  //   props.hallLight01,
-  //   props.hallLight02,
-  //   // props.hallPadestal,
-  // ]);
 
   return (
     <>

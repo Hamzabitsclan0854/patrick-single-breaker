@@ -13,11 +13,13 @@ import persistReducer from "redux-persist/es/persistReducer";
 import persistStore from "redux-persist/es/persistStore";
 import { PersistGate } from "redux-persist/integration/react";
 import storage from "redux-persist/lib/storage";
+import CounterReducer from "./Redux/Reducers/CounterReducer";
 
 // Making store persist ................................................
 const persistConfig = {
   key: "root",
   storage: storage,
+  whitelist: [CounterReducer],
 };
 const persist_r = persistReducer(persistConfig, rootReducer);
 const store = createStore(persist_r, composeWithDevTools());

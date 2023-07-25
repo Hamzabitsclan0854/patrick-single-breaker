@@ -188,7 +188,7 @@
   color: #000;
   font-weight: 800;
     font-family: 'Nunito', sans-serif;
-    font-size: 35px;
+    font-size: 25px;
     margin-top: 18px;
     text-shadow: 0 2px 3px #f7f7f7, 1px 3px 4px #ababab, 0 8px 3px #6c6c6c, 0 0px 4px #6a6767, 0 0px 0px #565656, 0 0px 4px #707070, 0 7px 4px #585858;
 }
@@ -340,7 +340,7 @@
     margin-top: 8px !important;
 }
 .set-floor-title {
-  font-size: 25px;
+  font-size: 22px;
   }
 }
 

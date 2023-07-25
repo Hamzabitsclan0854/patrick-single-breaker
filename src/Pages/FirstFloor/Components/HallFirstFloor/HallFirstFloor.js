@@ -1,35 +1,51 @@
 import React from "react";
 import HallBulbOnImg from "../images/HallBulbOnImg.png";
 import HallBulbOffImg from "../images/HallBulbOffImg.png";
-import HallBulbOffImg_D from "../images/HallBulbOffImg_D.png"
+import HallBulbOffImg_D from "../images/HallBulbOffImg_D.png";
 import LEDHallFirstFloorOn from "../images/LEDHallFirstFloorOn.png";
 import LEDHallFirstFloor from "../images/LEDHallFirstFloor.png";
 import aquarium from "../images/aquarium.png";
 import aquariumD from "../images/aquariumD.png";
-import './HallFirstFloor.css'
-// import LedOffIMG from "../images/LedOffIMG.png";
-import "./HallFirstFloor"
+import "./HallFirstFloor.css";
+import "./HallFirstFloor";
 import { useState, useEffect } from "react";
 import Swal from "sweetalert2";
 import useSound from "use-sound";
 import error from "../SoundEffects/error.mp3";
-import { SwalBreakerOff, SwalDisconnected } from "../../../Components/SwalModules";
+import {
+  SwalBreakerOff,
+  SwalDisconnected,
+} from "../../../Components/SwalModules";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import {
+  increaseDeviceCounter,
+  connectDevice,
+  disconnectDevice,
+} from "../../../../Redux/Action";
 
 const HallFirstFloor = (props) => {
   const navigate = useNavigate();
+
+  const dispatch = useDispatch();
+  const dispatchdisconnect = useDispatch();
+  const dispatchconnect = useDispatch();
+
   const [errorSound] = useSound(error);
   const [hover, setHover] = useState("");
 
   const disconnectHandler = (val) => {
     if (val === 25) {
       props.setHallLedTv("disconnect");
+      dispatchdisconnect(disconnectDevice());
     }
     if (val === 26) {
       props.setHallLight01("disconnect");
+      dispatchdisconnect(disconnectDevice());
     }
     if (val === 27) {
       props.setHallLight02("disconnect");
+      dispatchdisconnect(disconnectDevice());
     }
     if (props.rndGroupFour === val) {
       props.setGroupFourCorruptDevice(0);
@@ -38,25 +54,31 @@ const HallFirstFloor = (props) => {
   };
 
   const connectHandler = (val) => {
-      if (props.rndGroupFour === val && props.groupFourBreakerType === "red") {
-        props.setGroupFourBreakerType("black");
-        props.setIsGroupFourBreaker(false);
-        SwalBreakerOff()
-        errorSound();
-        props.setFirstFloorTrial(props.firstFloorTrial + 1);
-        localStorage.setItem('state-first', JSON.stringify(props.firstFloorTrial +1))
-      }
-      props.setGroupFourCorruptDevice(val);
-      if (val === 25) {
-        props.setHallLedTv("connected");
-      }
-      if (val === 26) {
-        props.setHallLight01("connected");
-      }
-      if (val === 27) {
-        props.setHallLight02("connected");
-      }
-  
+    if (props.rndGroupFour === val && props.groupFourBreakerType === "red") {
+      props.setGroupFourBreakerType("black");
+      props.setIsGroupFourBreaker(false);
+      SwalBreakerOff();
+      dispatch(increaseDeviceCounter());
+      errorSound();
+      // props.setFirstFloorTrial(props.firstFloorTrial + 1);
+      // localStorage.setItem(
+      //   "state-first",
+      //   JSON.stringify(props.firstFloorTrial + 1)
+      // );
+    }
+    props.setGroupFourCorruptDevice(val);
+    if (val === 25) {
+      props.setHallLedTv("connected");
+      dispatchconnect(connectDevice());
+    }
+    if (val === 26) {
+      props.setHallLight01("connected");
+      dispatchconnect(connectDevice());
+    }
+    if (val === 27) {
+      props.setHallLight02("connected");
+      dispatchconnect(connectDevice());
+    }
   };
 
   return (
@@ -64,7 +86,9 @@ const HallFirstFloor = (props) => {
       {props.gamePhaseGroup4 === "hall" ? (
         <div
           style={{
-            backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,0.2) 0%,rgba(0,0,0,0.2) 100%),url(${process.env.PUBLIC_URL + "/images/full-first-floor-hall.png"})`,
+            backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,0.2) 0%,rgba(0,0,0,0.2) 100%),url(${
+              process.env.PUBLIC_URL + "/images/full-first-floor-hall.png"
+            })`,
             height: "100%",
             width: "100%",
             border: "2px dotted white",
@@ -72,12 +96,11 @@ const HallFirstFloor = (props) => {
           className="hall-main-div"
         >
           <div className=" d-flex img-div">
-
-             
             {/* LED TV div .............. */}
             <div
               className={
-                props.isGroupFourBreaker === true && props.hallLedTv === "connected"
+                props.isGroupFourBreaker === true &&
+                props.hallLedTv === "connected"
                   ? "div-LED-hall2-On"
                   : "div-LED-hall2"
               }
@@ -87,13 +110,16 @@ const HallFirstFloor = (props) => {
                 src={
                   props.isGroupFourBreaker === true &&
                   props.hallLedTv === "connected"
-                   
-                    ? aquarium : props.hallLedTv === "disconnect" ? aquariumD
+                    ? aquarium
+                    : props.hallLedTv === "disconnect"
+                    ? aquariumD
                     : aquariumD
                 }
                 alt=""
                 className={
-                  props.hallLedTv === "disconnect" ? "disconnected-brightness" : ""
+                  props.hallLedTv === "disconnect"
+                    ? "disconnected-brightness"
+                    : ""
                 }
                 style={{
                   height:
@@ -126,116 +152,100 @@ const HallFirstFloor = (props) => {
                   </button>
                 )}
               </>
-
-              
             </div>
-
-             {/* start my code 12/29...................... */}
-
-         <button
+            {/* start my code 12/29...................... */}
+            <button
               // className={firstBtn === "attic" ? 'btn-01-maskGroup' : "btn-maskGroup mb-4 "}
               className={"btn-maskGroup set-btns-hall-first-attic"}
-
               onMouseEnter={() => {
                 // setBtnPhase("attic")
                 // setfirstBtn('')
               }}
-            
               // onMouseLeave={()=> setBtnPhase("")}
               onClick={() => {
                 // setShowAttic(true)
                 navigate("/attic");
-                localStorage.setItem('state-attic', JSON.stringify(-5))
-
+                localStorage.setItem("state-attic", JSON.stringify(-5));
               }}
             >
-          Attic Floor
+              Attic Floor
             </button>
             <button
               // className={firstBtn === "attic" ? 'btn-01-maskGroup' : "btn-maskGroup mb-4 "}
               className={"btn-maskGroup set-btns-hall-first-ground"}
-
               onMouseEnter={() => {
                 // setBtnPhase("attic")
                 // setfirstBtn('')
               }}
-            
               // onMouseLeave={()=> setBtnPhase("")}
               onClick={() => {
                 // setShowAttic(true)
                 navigate("/ground-floor");
               }}
             >
-          Ground Floor
+              Ground Floor
             </button>
             <button
               // className={firstBtn === "attic" ? 'btn-01-maskGroup' : "btn-maskGroup mb-4 "}
               className={"btn-maskGroup set-btn-hall-first-bedroom"}
-
               onMouseEnter={() => {
                 // setBtnPhase("attic")
                 // setfirstBtn('')
               }}
-            
               // onMouseLeave={()=> setBtnPhase("")}
               onClick={() => {
                 // setShowAttic(true)
                 navigate("/first-floor/bed-room");
               }}
             >
-          Bed Room 03
-            </button> <button
+              Bed Room 03
+            </button>{" "}
+            <button
               // className={firstBtn === "attic" ? 'btn-01-maskGroup' : "btn-maskGroup mb-4 "}
               className={"btn-maskGroup set-btn-hall-first-toilet"}
-
               onMouseEnter={() => {
                 // setBtnPhase("attic")
                 // setfirstBtn('')
               }}
-            
               // onMouseLeave={()=> setBtnPhase("")}
               onClick={() => {
                 // setShowAttic(true)
                 navigate("/first-floor/toilet");
               }}
             >
-          Toilet
-            </button> <button
+              Toilet
+            </button>{" "}
+            <button
               // className={firstBtn === "attic" ? 'btn-01-maskGroup' : "btn-maskGroup mb-4 "}
               className={"btn-maskGroup set-btn-hall-first-living1"}
-
               onMouseEnter={() => {
                 // setBtnPhase("attic")
                 // setfirstBtn('')
               }}
-            
               // onMouseLeave={()=> setBtnPhase("")}
               onClick={() => {
                 // setShowAttic(true)
                 navigate("/first-floor/living-room01");
               }}
             >
-          Bedroom 01
-            </button> <button
+              Bedroom 01
+            </button>{" "}
+            <button
               // className={firstBtn === "attic" ? 'btn-01-maskGroup' : "btn-maskGroup mb-4 "}
               className={"btn-maskGroup set-btn-hall-first-living2"}
-
               onMouseEnter={() => {
                 // setBtnPhase("attic")
                 // setfirstBtn('')
               }}
-            
               // onMouseLeave={()=> setBtnPhase("")}
               onClick={() => {
                 // setShowAttic(true)
                 navigate("/first-floor/living-room02");
               }}
             >
-          Bedroom 02
+              Bedroom 02
             </button>
             {/* end my code 12/29...................... */}
-
-        
             {/* first light div ................. */}
             <div
               className={
@@ -249,14 +259,13 @@ const HallFirstFloor = (props) => {
                 src={
                   props.isGroupFourBreaker === true &&
                   props.hallLight01 === "connected"
+                    ? HallBulbOnImg
+                    : props.hallLight01 === "disconnect"
+                    ? HallBulbOffImg_D
+                    : HallBulbOffImg
 
-                      ? HallBulbOnImg
-                      : props.hallLight01 === "disconnect"
-                      ? HallBulbOffImg_D
-                      : HallBulbOffImg
-
-                    // ? HallBulbOnImg : props.hallLight01 === "disconnect" ? HallBulbOffImg_D
-                    // : HallBulbOffImg
+                  // ? HallBulbOnImg : props.hallLight01 === "disconnect" ? HallBulbOffImg_D
+                  // : HallBulbOffImg
                 }
                 // className={
                 //   props.hallLight01 === "disconnect" ? "disconnected" : ""
@@ -295,7 +304,6 @@ const HallFirstFloor = (props) => {
                 )}
               </>
             </div>
-
             {/* Second light div ................. */}
             <div
               className={
@@ -305,25 +313,22 @@ const HallFirstFloor = (props) => {
                   : "div-light02-hall2"
               }
             >
-              <img 
+              <img
                 src={
                   props.isGroupFourBreaker === true &&
                   props.hallLight02 === "connected"
-
                     ? HallBulbOnImg
-                      : props.hallLight02 === "disconnect"
-                      ? HallBulbOffImg_D
-                      : HallBulbOffImg
+                    : props.hallLight02 === "disconnect"
+                    ? HallBulbOffImg_D
+                    : HallBulbOffImg
 
                   // ? HallBulbOnImg : props.hallLight02 === "disconnect" ? HallBulbOffImg_D
                   // : HallBulbOffImg
-                 
                 }
-                  // className={
-                  //   props.hallLight02 === "disconnect" ? "disconnected" : ""
-                  // }
+                // className={
+                //   props.hallLight02 === "disconnect" ? "disconnected" : ""
+                // }
                 style={{
-              
                   height:
                     props.isGroupFourBreaker === true &&
                     props.hallLight02 === "connected"
@@ -357,13 +362,16 @@ const HallFirstFloor = (props) => {
                 )}
               </>
             </div>
-
-           
           </div>
-          <div  style={{ position:'absolute',left: '50%', bottom:'0%',transform: 'translateX(-50%)'}}>
-            <h1 className='heading-bottom' >
-                Hall
-            </h1>
+          <div
+            style={{
+              position: "absolute",
+              left: "50%",
+              bottom: "0%",
+              transform: "translateX(-50%)",
+            }}
+          >
+            <h1 className="heading-bottom">Hall</h1>
           </div>
         </div>
       ) : (
@@ -385,8 +393,7 @@ const HallFirstFloor = (props) => {
             }}
             className="hall-main-div disconnected"
           >
-            <div>
-            </div>
+            <div></div>
           </div>
         </div>
       )}

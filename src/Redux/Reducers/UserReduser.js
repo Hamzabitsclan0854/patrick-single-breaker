@@ -1,19 +1,18 @@
 const data = {
-    userName : "",
-    
-}
+  userName: "",
+};
 const UserReducer = (state = data, action) => {
-    switch (action.type) {
-        case "name":
-            return {
-                ...state,
-                userName : action.payload
-            };
-            
-    
-        default:
-            return state
-    }
-}
+  switch (action.type) {
+    case "name":
+      localStorage.setItem("userName", action.payload);
+      return {
+        ...state,
+        userName: action.payload,
+      };
 
-export default UserReducer
+    default:
+      return state;
+  }
+};
+
+export default UserReducer;

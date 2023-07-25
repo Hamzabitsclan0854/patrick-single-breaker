@@ -88,3 +88,27 @@ export const laundaryBreaker = (val) => {
     payload: val,
   };
 };
+
+export const increaseCouter = () => {
+  return {
+    type: "counter",
+  };
+};
+
+export const increaseDeviceCounter = () => {
+  return {
+    type: "counterDevice",
+  };
+};
+
+export const disconnectDevice = () => {
+  return {
+    type: "disconnectDevice",
+  };
+};
+
+export const connectDevice = () => {
+  return {
+    type: "connectDevice",
+  };
+};

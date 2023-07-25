@@ -1,33 +1,50 @@
 import React from "react";
-import './BedRoomFirstFloor.css'
+import "./BedRoomFirstFloor.css";
 import { useState, useEffect } from "react";
 import ACOn from "../images/ACOn.png";
 import ACOff from "../images/ACOff.png";
 import SilingFanOffIMG from "../images/SilingFanOffIMG.png";
 import SilingFanOnIMG from "../images/SilingFanOnIMG.png";
 import LampBedRoomOn_D from "../images/LampBedRoomOn_D.png";
-import LampBedRoom from "../images/LampBedRoom.png"
-import LampBedRoomOn from "../images/LampBedRoomOn.png"
-import SilingFanOnIMG_DD from "../images/SilingFanOnIMG_DD.png"
+import LampBedRoom from "../images/LampBedRoom.png";
+import LampBedRoomOn from "../images/LampBedRoomOn.png";
+import SilingFanOnIMG_DD from "../images/SilingFanOnIMG_DD.png";
 import Swal from "sweetalert2";
 import useSound from "use-sound";
 import error from "../SoundEffects/error.mp3";
-import { SwalBreakerOff, SwalDisconnected } from "../../../Components/SwalModules";
+import {
+  SwalBreakerOff,
+  SwalDisconnected,
+} from "../../../Components/SwalModules";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import {
+  increaseDeviceCounter,
+  connectDevice,
+  disconnectDevice,
+} from "../../../../Redux/Action";
 
 const BedRoomFirstFloor = (props) => {
   const navigate = useNavigate();
+
+  const dispatch = useDispatch();
+  const dispatchdisconnect = useDispatch();
+  const dispatchconnect = useDispatch();
+
   const [errorSound] = useSound(error);
   const [hover, setHover] = useState("");
   const disconnectHandler = (val) => {
     if (val === 28) {
       props.setLivingLight01("disconnect");
+      dispatchdisconnect(disconnectDevice());
     }
     if (val === 29) {
       props.setLivingLight02("disconnect");
+      dispatchdisconnect(disconnectDevice());
     }
     if (val === 30) {
       props.setLivingSilingFan("disconnect");
+      dispatchdisconnect(disconnectDevice());
     }
     if (props.rndGroupFour === val) {
       props.setGroupFourCorruptDevice(0);
@@ -36,26 +53,33 @@ const BedRoomFirstFloor = (props) => {
   };
 
   const connectHandler = (val) => {
-      if (props.rndGroupFour === val && props.groupFourBreakerType === "red") {
-        props.setGroupFourBreakerType("black");
+    if (props.rndGroupFour === val && props.groupFourBreakerType === "red") {
+      props.setGroupFourBreakerType("black");
 
-        props.setIsGroupFourBreaker(false);
-        SwalBreakerOff()
-        props.setFirstFloorTrial(props.firstFloorTrial + 1);
-        localStorage.setItem('state-first', JSON.stringify(props.firstFloorTrial +1))
-        errorSound();
-      }
-      props.setGroupFourCorruptDevice(val);
-      
-      if (val === 28) {
-        props.setLivingLight01("connected");
-      }
-      if (val === 29) {
-        props.setLivingLight02("connected");
-      }
-      if (val === 30) {
-        props.setLivingSilingFan("connected");
-      }
+      props.setIsGroupFourBreaker(false);
+      SwalBreakerOff();
+      dispatch(increaseDeviceCounter());
+      props.setFirstFloorTrial(props.firstFloorTrial + 1);
+      localStorage.setItem(
+        "state-first",
+        JSON.stringify(props.firstFloorTrial + 1)
+      );
+      errorSound();
+    }
+    props.setGroupFourCorruptDevice(val);
+
+    if (val === 28) {
+      props.setLivingLight01("connected");
+      dispatchconnect(connectDevice());
+    }
+    if (val === 29) {
+      props.setLivingLight02("connected");
+      dispatchconnect(connectDevice());
+    }
+    if (val === 30) {
+      props.setLivingSilingFan("connected");
+      dispatchconnect(connectDevice());
+    }
   };
 
   return (
@@ -86,7 +110,6 @@ const BedRoomFirstFloor = (props) => {
                 src={
                   props.isGroupFourBreaker === true &&
                   props.livingLight01 === "connected"
-
                     ? LampBedRoomOn
                     : props.livingLight01 === "disconnect"
                     ? LampBedRoomOn_D
@@ -134,22 +157,20 @@ const BedRoomFirstFloor = (props) => {
 
             {/* start my code 12/29...................... */}
 
-         <button
+            <button
               // className={firstBtn === "attic" ? 'btn-01-maskGroup' : "btn-maskGroup mb-4 "}
               className={"btn-maskGroup set-btn-first-bed-back"}
-
               onMouseEnter={() => {
                 // setBtnPhase("attic")
                 // setfirstBtn('')
               }}
-            
               // onMouseLeave={()=> setBtnPhase("")}
               onClick={() => {
                 // setShowAttic(true)
                 navigate("/first-floor");
               }}
             >
-          Go Back
+              Go Back
             </button>
             {/* end my code 12/29...................... */}
 
@@ -166,7 +187,6 @@ const BedRoomFirstFloor = (props) => {
                 src={
                   props.isGroupFourBreaker === true &&
                   props.livingLight02 === "connected"
-
                     ? LampBedRoomOn
                     : props.livingLight02 === "disconnect"
                     ? LampBedRoomOn_D
@@ -211,8 +231,8 @@ const BedRoomFirstFloor = (props) => {
               </>
             </div>
 
-             {/* silingfan div .............. */}
-             <div
+            {/* silingfan div .............. */}
+            <div
               className={
                 props.isGroupFourBreaker === true &&
                 props.livingSilingFan === "connected"
@@ -224,14 +244,16 @@ const BedRoomFirstFloor = (props) => {
                 src={
                   props.isGroupFourBreaker === true &&
                   props.livingSilingFan === "connected"
-                    
-                    
-                    ? SilingFanOnIMG : props.livingSilingFan === "disconnect" ? SilingFanOnIMG_DD
-                  : SilingFanOnIMG_DD 
+                    ? SilingFanOnIMG
+                    : props.livingSilingFan === "disconnect"
+                    ? SilingFanOnIMG_DD
+                    : SilingFanOnIMG_DD
                 }
                 alt=""
                 className={
-                  props.livingSilingFan === "disconnect" ? "disconnected-brightness" : ""
+                  props.livingSilingFan === "disconnect"
+                    ? "disconnected-brightness"
+                    : ""
                 }
                 style={{
                   height:
@@ -266,7 +288,6 @@ const BedRoomFirstFloor = (props) => {
                 )}
               </>
             </div>
-
           </div>
           <div className="position-heading-bottom">
             <h1 className="heading-bottom">Bed Room 03</h1>

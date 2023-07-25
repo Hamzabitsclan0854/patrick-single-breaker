@@ -20,6 +20,12 @@ import MixtureOffIMG_D from "../images/MixtureOffIMG_D.png";
 import KitchenBlbOff_d from "../images/KitchenBlbOff_d.png";
 import SmookOn from "../images/SmookOn.png";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import {
+  increaseDeviceCounter,
+  connectDevice,
+  disconnectDevice,
+} from "../../../Redux/Action";
 
 import "antd/dist/antd.css";
 import { SwalBreakerOff, SwalDisconnected } from "../../Components/SwalModules";
@@ -27,26 +33,36 @@ import { SwalBreakerOff, SwalDisconnected } from "../../Components/SwalModules";
 const Kitchen = (props) => {
   const navigate = useNavigate();
 
+  const dispatch = useDispatch();
+  const dispatchdisconnect = useDispatch();
+  const dispatchconnect = useDispatch();
+
   const [errorSound] = useSound(error);
 
   const disconnectHandler = (val) => {
     if (val === 10) {
       props.setKitchenMixture("disconnect");
+      dispatchdisconnect(disconnectDevice());
     }
     if (val === 11) {
       props.setKitchenOven("disconnect");
+      dispatchdisconnect(disconnectDevice());
     }
     if (val === 12) {
       props.setKitchenLight01("disconnect");
+      dispatchdisconnect(disconnectDevice());
     }
     if (val === 13) {
       props.setKitchenLight02("disconnect");
+      dispatchdisconnect(disconnectDevice());
     }
     if (val === 14) {
       props.setKitchenLight03("disconnect");
+      dispatchdisconnect(disconnectDevice());
     }
     if (val === 15) {
       props.setKitchenToster("disconnect");
+      dispatchdisconnect(disconnectDevice());
     }
     if (props.rndKitchen === val) {
       props.setKitchenCorruptDevice(0);
@@ -59,6 +75,7 @@ const Kitchen = (props) => {
       props.setKitchenBreakerType("black");
       props.setIsKitchenBreaker(false);
       SwalBreakerOff();
+      dispatch(increaseDeviceCounter());
       errorSound();
       props.setGroundFloorTrial(props.groundFloorTrial + 1);
       localStorage.setItem("state", JSON.stringify(props.groundFloorTrial + 1));
@@ -66,21 +83,27 @@ const Kitchen = (props) => {
     props.setKitchenCorruptDevice(val);
     if (val === 10) {
       props.setKitchenMixture("connected");
+      dispatchconnect(connectDevice());
     }
     if (val === 11) {
       props.setKitchenOven("connected");
+      dispatchconnect(connectDevice());
     }
     if (val === 12) {
       props.setKitchenLight01("connected");
+      dispatchconnect(connectDevice());
     }
     if (val === 13) {
       props.setKitchenLight02("connected");
+      dispatchconnect(connectDevice());
     }
     if (val === 14) {
       props.setKitchenLight03("connected");
+      dispatchconnect(connectDevice());
     }
     if (val === 15) {
       props.setKitchenToster("connected");
+      dispatchconnect(connectDevice());
     }
   };
 
@@ -305,16 +328,6 @@ const Kitchen = (props) => {
                 : SmookOn
             }
             alt=""
-            // className={
-            //   props.kitchenLight02 === "disconnect" ? "disconnected" : ""
-            // }
-            // style={{
-            //   height:
-            //     props.isKitchenBreaker === true &&
-            //     props.kitchenLight02 === "connected"
-            //     ? "33.7vh"
-            //     : "23vh",
-            // }}
           />
         </div>
 

@@ -11,27 +11,45 @@ import FanOn from "../images/FanOn.png";
 import HairDry_D from "../images/HairDry_D.png";
 import HairDryOff from "../images/HairDryOff.png";
 import HairDryOn from "../images/HairDryOn.png";
-import FanOff_D from "../images/FanOff_D.png"
-import LightOff_D from "../images/LightOff_D.png"
-import { SwalBreakerOff, SwalDisconnected } from "../../../Components/SwalModules";
+import FanOff_D from "../images/FanOff_D.png";
+import LightOff_D from "../images/LightOff_D.png";
+import {
+  SwalBreakerOff,
+  SwalDisconnected,
+} from "../../../Components/SwalModules";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import {
+  increaseDeviceCounter,
+  connectDevice,
+  disconnectDevice,
+} from "../../../../Redux/Action";
 
 const ToiletFirstFloor = (props) => {
   const navigate = useNavigate();
+
+  const dispatch = useDispatch();
+  const dispatchdisconnect = useDispatch();
+  const dispatchconnect = useDispatch();
+
   const [errorSound] = useSound(error);
   const [hover, setHover] = useState("");
   const disconnectHandler = (val) => {
     if (val === 31) {
       props.setToiletLight("disconnect");
+      dispatchdisconnect(disconnectDevice());
     }
     if (val === 32) {
       props.setToiletLight02("disconnect");
+      dispatchdisconnect(disconnectDevice());
     }
     if (val === 33) {
       props.setToiletFan("disconnect");
+      dispatchdisconnect(disconnectDevice());
     }
     if (val === 34) {
       props.setToiletLight03("disconnect");
+      dispatchdisconnect(disconnectDevice());
     }
     if (props.rndGroupFour === val) {
       props.setGroupFourCorruptDevice(0);
@@ -44,22 +62,30 @@ const ToiletFirstFloor = (props) => {
       props.setGroupFourBreakerType("black");
       errorSound();
       props.setIsGroupFourBreaker(false);
-      SwalBreakerOff()
+      SwalBreakerOff();
+      dispatch(increaseDeviceCounter());
       props.setFirstFloorTrial(props.firstFloorTrial + 1);
-      localStorage.setItem('state-first', JSON.stringify(props.firstFloorTrial +1))
+      localStorage.setItem(
+        "state-first",
+        JSON.stringify(props.firstFloorTrial + 1)
+      );
     }
     props.setGroupFourCorruptDevice(val);
     if (val === 31) {
       props.setToiletLight("connected");
+      dispatchconnect(connectDevice());
     }
     if (val === 32) {
       props.setToiletLight02("connected");
+      dispatchconnect(connectDevice());
     }
     if (val === 33) {
       props.setToiletFan("connected");
+      dispatchconnect(connectDevice());
     }
     if (val === 34) {
       props.setToiletLight03("connected");
+      dispatchconnect(connectDevice());
     }
   };
 
@@ -92,14 +118,13 @@ const ToiletFirstFloor = (props) => {
                 src={
                   props.isGroupFourBreaker === true &&
                   props.toiletLight === "connected"
-                  
                     ? LightOn
                     : props.toiletLight === "disconnect"
                     ? LightOff_D
                     : LightOff
-                    
-                    // ? LightOff : props.toiletLight === "disconnect" ? LightOff_D
-                    // : LightOff
+
+                  // ? LightOff : props.toiletLight === "disconnect" ? LightOff_D
+                  // : LightOff
                 }
                 // className={
                 //   props.toiletLight === "disconnect" ? "disconnected" : ""
@@ -180,31 +205,24 @@ const ToiletFirstFloor = (props) => {
               </>
             </div>
 
+            {/* start my code 12/29...................... */}
 
-
- {/* start my code 12/29...................... */}
-
- <button
+            <button
               // className={firstBtn === "attic" ? 'btn-01-maskGroup' : "btn-maskGroup mb-4 "}
               className={"btn-maskGroup set-btns-first-toilet"}
-
               onMouseEnter={() => {
                 // setBtnPhase("attic")
                 // setfirstBtn('')
               }}
-            
               // onMouseLeave={()=> setBtnPhase("")}
               onClick={() => {
                 // setShowAttic(true)
                 navigate("/first-floor");
               }}
             >
-         Go Back
+              Go Back
             </button>
             {/* end my code 12/29...................... */}
-
-
-
 
             {/* fan div .............. */}
             <div className={"div-fan-On-firstFloor "}>
@@ -212,9 +230,11 @@ const ToiletFirstFloor = (props) => {
                 src={
                   props.isGroupFourBreaker === true &&
                   props.toiletFan === "connected"
-                    // ? FanOn
-                    // : FanOff
-                    ? FanOn : props.toiletFan === "disconnect" ? FanOff_D
+                    ? // ? FanOn
+                      // : FanOff
+                      FanOn
+                    : props.toiletFan === "disconnect"
+                    ? FanOff_D
                     : FanOff
                 }
                 alt=""
@@ -261,7 +281,6 @@ const ToiletFirstFloor = (props) => {
                 src={
                   props.isGroupFourBreaker === true &&
                   props.toiletLight03 === "connected"
-                  
                     ? LightOn
                     : props.toiletLight03 === "disconnect"
                     ? LightOff_D

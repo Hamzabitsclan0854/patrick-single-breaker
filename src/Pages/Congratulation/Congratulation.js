@@ -38,7 +38,7 @@ const Congratulation = () => {
           onClick={() => {
             // setShowAttic(true)
             // navigate("/mask-group");
-            window.location.href = "/mask-group";
+            window.location.href = "/";
           }}
         >
           <img src={RestartIcon} />

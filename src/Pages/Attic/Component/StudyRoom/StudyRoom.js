@@ -7,21 +7,37 @@ import laptopOff from "../images/laptopOff.png";
 import { useState, useEffect } from "react";
 import Swal from "sweetalert2";
 import useSound from "use-sound";
-import LampGuestRoom_D from "../images/LampGuestRoom_D.png"
+import LampGuestRoom_D from "../images/LampGuestRoom_D.png";
 import error from "../SoundEffects/error.mp3";
-import { SwalBreakerOff, SwalDisconnected } from "../../../Components/SwalModules";
+import {
+  SwalBreakerOff,
+  SwalDisconnected,
+} from "../../../Components/SwalModules";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import {
+  increaseDeviceCounter,
+  connectDevice,
+  disconnectDevice,
+} from "../../../../Redux/Action";
 
 const StudyRoom = (props) => {
   const navigate = useNavigate();
+
+  const dispatch = useDispatch();
+  const dispatchdisconnect = useDispatch();
+  const dispatchconnect = useDispatch();
+
   const [errorSound] = useSound(error);
   const [hover, setHover] = useState("");
   const disconnectHandler = (val) => {
     if (val === 42) {
       props.setStudyLamp("disconnect");
+      dispatchdisconnect(disconnectDevice());
     }
     if (val === 43) {
       props.setStudyLamp02("disconnect");
+      dispatchdisconnect(disconnectDevice());
     }
     if (props.rndGroupFive === val) {
       props.setGroupFiveCorruptDevice(0);
@@ -30,22 +46,24 @@ const StudyRoom = (props) => {
   };
 
   const connectHandler = (val) => {
-      if (props.rndGroupFive === val && props.groupFiveBreakerType === "red") {
-        props.setgroupFiveBreakerType('black')
-        props.setIsGroupFiveBreaker(false);
-        SwalBreakerOff()
-        errorSound();
-        props.setAtticTrial(props.atticTrial + 1);
-        localStorage.setItem('state-attic', JSON.stringify(props.atticTrial +1))
-      }
-      props.setGroupFiveCorruptDevice(val);
-      if (val === 42) {
-        props.setStudyLamp("connected");
-      }
-      if (val === 43) {
-        props.setStudyLamp02("connected");
-      }
-    
+    if (props.rndGroupFive === val && props.groupFiveBreakerType === "red") {
+      props.setgroupFiveBreakerType("black");
+      props.setIsGroupFiveBreaker(false);
+      SwalBreakerOff();
+      dispatch(increaseDeviceCounter());
+      errorSound();
+      props.setAtticTrial(props.atticTrial + 1);
+      localStorage.setItem("state-attic", JSON.stringify(props.atticTrial + 1));
+    }
+    props.setGroupFiveCorruptDevice(val);
+    if (val === 42) {
+      props.setStudyLamp("connected");
+      dispatchconnect(connectDevice());
+    }
+    if (val === 43) {
+      props.setStudyLamp02("connected");
+      dispatchconnect(connectDevice());
+    }
   };
 
   return (
@@ -67,7 +85,8 @@ const StudyRoom = (props) => {
             {/* lamp div .............. */}
             <div
               className={
-                props.isGroupFiveBreaker === true && props.studyLamp === "connected"
+                props.isGroupFiveBreaker === true &&
+                props.studyLamp === "connected"
                   ? "div-lamp-study-on"
                   : "div-lamp-study"
               }
@@ -76,12 +95,11 @@ const StudyRoom = (props) => {
                 src={
                   props.isGroupFiveBreaker === true &&
                   props.studyLamp === "connected"
-
                     ? LampGuestRoomIMGOn
-                      : props.studyLamp === "disconnect"
-                      ? LampGuestRoom_D
-                      : LampGuestRoomIMG
-                    
+                    : props.studyLamp === "disconnect"
+                    ? LampGuestRoom_D
+                    : LampGuestRoomIMG
+
                   //   ? LampGuestRoomIMG : props.studyLamp === "disconnect" ? LampGuestRoom_D
                   // : LampGuestRoomIMG
                 }
@@ -117,29 +135,24 @@ const StudyRoom = (props) => {
               </>
             </div>
 
+            {/* start my code 12/29...................... */}
 
- {/* start my code 12/29...................... */}
-
- <button
+            <button
               // className={firstBtn === "attic" ? 'btn-01-maskGroup' : "btn-maskGroup mb-4 "}
               className={"btn-maskGroup set-attic-study-back"}
-
               onMouseEnter={() => {
                 // setBtnPhase("attic")
                 // setfirstBtn('')
               }}
-            
               // onMouseLeave={()=> setBtnPhase("")}
               onClick={() => {
                 // setShowAttic(true)
                 navigate("/attic");
               }}
             >
-          Go Back
+              Go Back
             </button>
             {/* end my code 12/29...................... */}
-
-
 
             {/* lamp02 div .............. */}
             <div
@@ -171,18 +184,21 @@ const StudyRoom = (props) => {
                 src={
                   props.isGroupFiveBreaker === true &&
                   props.studyLamp02 === "connected"
+                    ? // ? LampGuestRoomIMGOn
+                      //   : props.studyLamp02 === "disconnect"
+                      //   ? LampGuestRoom_D
+                      //   : LampGuestRoomIMG
 
-                    // ? LampGuestRoomIMGOn
-                    //   : props.studyLamp02 === "disconnect"
-                    //   ? LampGuestRoom_D
-                    //   : LampGuestRoomIMG
-
-                  ? laptopOn : props.studyLamp02 === "disconnect" ? laptopOff
-                  : laptopOff
+                      laptopOn
+                    : props.studyLamp02 === "disconnect"
+                    ? laptopOff
+                    : laptopOff
                 }
                 alt=""
                 className={
-                  props.studyLamp02 === "disconnect" ? "disconnected-brightness" : ""
+                  props.studyLamp02 === "disconnect"
+                    ? "disconnected-brightness"
+                    : ""
                 }
                 style={{
                   height:

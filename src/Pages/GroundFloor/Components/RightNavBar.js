@@ -14,8 +14,10 @@ import ResultModel from "../../Components/ResultModel";
 import Avator from "../../Components/Avator";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  increaseCouter,
   isHurray,
   kitchenBreaker,
+  resetCouter,
   resultGroundFloor,
 } from "../../../Redux/Action";
 import { useState } from "react";
@@ -35,8 +37,26 @@ import {
 const RightNavBar = (props) => {
   const { id } = useParams();
 
+  // const counter = useSelector((state) => state.CounterReducer.count);
+  // console.log(counter + " redux counter");
+
+  // const counterDevice = useSelector(
+  //   (state) => state.CounterDeviceReducer.count
+  // );
+  // console.log(counterDevice + " redux device counter");
+
+  // const disconnectedDevices = useSelector(
+  //   (state) => state.CounterRemainingDevicesReducer.count
+  // );
+  // console.log(disconnectedDevices + " Disconnected Device numbers");
+
+  // useEffect(() => {
+  //   dispatch(resetCouter());
+  // }, []);
+
   // console.log(id);
   const dispatch = useDispatch();
+  const dispatchCounter = useDispatch();
   let navigate = useNavigate();
   const location = useLocation().pathname;
 
@@ -50,8 +70,27 @@ const RightNavBar = (props) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const [workAll, setWorkAll] = useState();
+  // // TOTAL OF COUNTERS
+  // const [breakerTotal, setBreakerTotal] = useState(10);
+  // const [deviceTotal, setDeviceTotal] = useState(10);
+  // const [remainingDevicesTotal, setRemainingDevicesTotal] = useState(48);
 
-  useEffect(() => {});
+  // // FINDING PERCENTAGES OF BREAKERS, DEVICES AND REMAINING DEVICES
+
+  // const wrongPerOfBreakerHit = (counter / breakerTotal) * 100;
+  // const wrongPerOfDeviceHit = (counterDevice / deviceTotal) * 100;
+  // const wrongPerOfRemainingDevices =
+  //   (disconnectedDevices / remainingDevicesTotal) * 100;
+  // //this is the average of wrong attempts
+  // const avgOfWrongProgress =
+  //   (wrongPerOfBreakerHit + wrongPerOfDeviceHit + wrongPerOfRemainingDevices) /
+  //   3;
+  // //now find the over all plus point of average in percentage
+  // const totalAvgProgress = 100 - avgOfWrongProgress;
+
+  // console.log("Total Avarage Progress of Game ", totalAvgProgress, "%");
+
+  // const [counterBreaker, setCounterBreaker] = useState(0);
 
   const rand =
     props.completeRnd ||
@@ -130,22 +169,18 @@ const RightNavBar = (props) => {
   // GROUP 1
   // ***********************************
   const firstGroupPass = () => {
-    dispatch(isHurray(true));
-    hurraySound();
-
-    setTimeout(() => {
-      dispatch(isHurray(false));
-    }, 3000);
+    props.setIsModalOpen(true);
+    // dispatch(isHurray(true));
+    // hurraySound();
 
     // setTimeout(() => {
-    //   SwalHurray("one", "one");
-    // }, 30);
-
-    setTimeout(() => {
-      props.setFirstGroupBreakerType("red");
-      props.setIsFirstGroupBreaker(true);
-    }, 3000);
-    navigate("/congratulation");
+    //   dispatch(isHurray(false));
+    // }, 3000);
+    // setTimeout(() => {
+    //   props.setFirstGroupBreakerType("red");
+    //   props.setIsFirstGroupBreaker(true);
+    // }, 3000);
+    // navigate("/congratulation");
   };
 
   const groupFirstBreakerHandlerOff = () => {
@@ -318,7 +353,14 @@ const RightNavBar = (props) => {
           ) {
             props.setFirstGroupBreakerType("black");
             props.setIsFirstGroupBreaker(false);
+            dispatchCounter(increaseCouter());
+            console.log("should be hit when connected");
             SwalInitial();
+            //ADD COUNTER
+            // dispatch(isHurray(true));
+
+            // console.log(counterBreaker, "Heloo counter");
+            // console.log("lksadf");
           }
           // end my code for breaker pop up
         }
@@ -338,6 +380,24 @@ const RightNavBar = (props) => {
           props.setFirstGroupBreakerType("black");
           props.setIsFirstGroupBreaker(false);
           SwalInitial();
+          // setCounterBreaker(counterBreaker + 1);
+          // console.log(counterBreaker, "Heloo counter");
+          dispatchCounter(increaseCouter());
+        } else if (
+          (props.completeRnd === 1 && props.toiletFan === "connected") ||
+          (props.completeRnd === 2 && props.toiletLight == "connected") ||
+          (props.completeRnd === 3 && props.hallLamp === "connected") ||
+          (props.completeRnd === 4 && props.hallLight01 === "connected") ||
+          (props.completeRnd === 5 && props.hallLight02 === "connected") ||
+          (props.completeRnd === 6 && props.livingRadio === "connected") ||
+          (props.completeRnd === 7 && props.livingLight01 === "connected") ||
+          (props.completeRnd === 8 && props.livingAC === "connected") ||
+          (props.completeRnd === 9 && props.livingLight03 === "connected")
+        ) {
+          props.setFirstGroupBreakerType("black");
+          props.setIsFirstGroupBreaker(false);
+          dispatchCounter(increaseCouter());
+          SwalInitial();
         }
       } else {
         props.setFirstGroupBreakerType("red");
@@ -347,6 +407,7 @@ const RightNavBar = (props) => {
     } else {
       if (rand >= 1 && rand <= 9) {
         SwalInitial();
+        dispatchCounter(increaseCouter());
       } else {
         props.setFirstGroupBreakerType("red");
         props.setIsFirstGroupBreaker(true);
@@ -373,22 +434,22 @@ const RightNavBar = (props) => {
   //   }, 30);
   // };
   const lastAssignmentPass = () => {
-    dispatch(isHurray(true));
-    hurraySound();
-
-    setTimeout(() => {
-      dispatch(isHurray(false));
-    }, 3000);
+    // dispatch(isHurray(true));
+    // hurraySound();
+    props.setIsModalOpen(true);
+    // setTimeout(() => {
+    //   dispatch(isHurray(false));
+    // }, 3000);
 
     // setTimeout(() => {
     //   SwalHurray("one", "one");
     // }, 30);
 
-    setTimeout(() => {
-      props.setKitchenBreakerType("red");
-      props.setIsKitchenBreaker(true);
-    }, 3000);
-    navigate("/congratulation");
+    // setTimeout(() => {
+    //   props.setKitchenBreakerType("red");
+    //   props.setIsKitchenBreaker(true);
+    // }, 3000);
+    // navigate("/congratulation");
   };
 
   // const kitchencolor = useSelector(
@@ -399,13 +460,6 @@ const RightNavBar = (props) => {
 
   const kitchenBreakerHandlerOff = () => {
     // dispatch(kitchenBreaker({ available: false, color: "black" }));
-
-    // console.log("start----------")
-    // console.log(props.rndKitchen)
-    // console.log(props.kitchenCorruptDevice)
-    // console.log(props.kitchenBreakerType)
-    // console.log(props.isKitchenBreaker)
-    // console.log("end-----------")
     if (location === "/ground-floor/kitchen") {
       if (props.rndKitchen >= 10 && props.rndKitchen <= 15) {
         // console.log("Second Breaker RightNav " + props.rndKitchen)
@@ -505,6 +559,7 @@ const RightNavBar = (props) => {
             props.setKitchenBreakerType("black");
             props.setIsKitchenBreaker(false);
             SwalInitial();
+            dispatchCounter(increaseCouter());
           }
           // end my code for breaker pop up
         }
@@ -521,6 +576,19 @@ const RightNavBar = (props) => {
           props.setKitchenBreakerType("black");
           props.setIsKitchenBreaker(false);
           SwalInitial();
+          dispatchCounter(increaseCouter());
+        } else if (
+          (props.rndKitchen === 10 && props.kitchenMixture === "connected") ||
+          (props.rndKitchen === 11 && props.kitchenOven === "connected") ||
+          (props.rndKitchen === 12 && props.kitchenLight01 === "connected") ||
+          (props.rndKitchen === 13 && props.kitchenLight02 === "connected") ||
+          (props.rndKitchen === 14 && props.kitchenLight03 === "connected") ||
+          (props.rndKitchen === 15 && props.kitchenToster === "connected")
+        ) {
+          props.setKitchenBreakerType("black");
+          props.setIsKitchenBreaker(false);
+          SwalInitial();
+          dispatchCounter(increaseCouter());
         }
       } else {
         props.setKitchenBreakerType("red");
@@ -529,6 +597,7 @@ const RightNavBar = (props) => {
     } else {
       if (rand >= 10 && rand <= 15) {
         SwalInitial();
+        dispatchCounter(increaseCouter());
       } else {
         props.setKitchenBreakerType("red");
         props.setIsKitchenBreaker(true);
@@ -545,22 +614,18 @@ const RightNavBar = (props) => {
   // GROUP 3
   // ***********************************
   const thirdGroupPass = () => {
-    dispatch(isHurray(true));
-    hurraySound();
-
-    setTimeout(() => {
-      dispatch(isHurray(false));
-    }, 3000);
+    props.setIsModalOpen(true);
+    // dispatch(isHurray(true));
+    // hurraySound();
 
     // setTimeout(() => {
-    //   SwalHurray("one", "one");
-    // }, 30);
-
-    setTimeout(() => {
-      props.setGroupThreeBreakerType("red");
-      props.setIsGroupThreeBreaker(true);
-    }, 3000);
-    navigate("/congratulation");
+    //   dispatch(isHurray(false));
+    // }, 3000);
+    // setTimeout(() => {
+    //   props.setGroupThreeBreakerType("red");
+    //   props.setIsGroupThreeBreaker(true);
+    // }, 3000);
+    // navigate("/congratulation");
   };
   const groupThreeBreakerHandlerOff = () => {
     if (
@@ -736,6 +801,7 @@ const RightNavBar = (props) => {
             props.setGroupThreeBreakerType("black");
             props.setIsGroupThreeBreaker(false);
             SwalInitial();
+            dispatchCounter(increaseCouter());
           }
           // end my code for breaker pop up
         }
@@ -752,8 +818,30 @@ const RightNavBar = (props) => {
           props.livingTwoSmallLamp === "connected"
         ) {
           props.setGroupThreeBreakerType("black");
-          props.setIsLivingOneBreaker(false);
+          props.setIsGroupThreeBreaker(false);
           SwalInitial();
+          dispatchCounter(increaseCouter());
+        } else if (
+          (props.rndGroupThree === 16 &&
+            props.livingOneLignt01 === "connected") ||
+          (props.rndGroupThree === 17 &&
+            props.livingOneLignt02 == "connected") ||
+          (props.rndGroupThree === 18 &&
+            props.livingOneLignt03 === "connected") ||
+          (props.rndGroupThree === 19 && props.livingOneFan == "connected") ||
+          (props.rndGroupThree === 20 && props.livingOneTV == "connected") ||
+          (props.rndGroupThree === 21 &&
+            props.livingTwoLignt01 == "connected") ||
+          (props.rndGroupThree === 22 && props.livingTwoFan == "connected") ||
+          (props.rndGroupThree === 23 &&
+            props.livingTwoLignt02 == "connected") ||
+          (props.rndGroupThree === 24 &&
+            props.livingTwoSmallLamp == "connected")
+        ) {
+          props.setGroupThreeBreakerType("black");
+          props.setIsGroupThreeBreaker(false);
+          SwalInitial();
+          dispatchCounter(increaseCouter());
         }
         // console.log("run third");
       } else {
@@ -764,6 +852,7 @@ const RightNavBar = (props) => {
     } else {
       if (rand >= 16 && rand <= 24) {
         SwalInitial();
+        dispatchCounter(increaseCouter());
       } else {
         props.setGroupThreeBreakerType("red");
         props.setIsGroupThreeBreaker(true);
@@ -781,22 +870,18 @@ const RightNavBar = (props) => {
   // GROUP 4
   // ***********************************
   const forthGroupPass = () => {
-    dispatch(isHurray(true));
-    hurraySound();
-
-    setTimeout(() => {
-      dispatch(isHurray(false));
-    }, 3000);
+    props.setIsModalOpen(true);
+    // dispatch(isHurray(true));
+    // hurraySound();
 
     // setTimeout(() => {
-    //   SwalHurray("one", "one");
-    // }, 30);
-
-    setTimeout(() => {
-      props.setGroupFourBreakerType("red");
-      props.setIsGroupFourBreaker(true);
-    }, 3000);
-    navigate("/congratulation");
+    //   dispatch(isHurray(false));
+    // }, 3000);
+    // setTimeout(() => {
+    //   props.setGroupFourBreakerType("red");
+    //   props.setIsGroupFourBreaker(true);
+    // }, 3000);
+    // navigate("/congratulation");
   };
   const groupFourBreakerHandlerOff = () => {
     if (
@@ -994,6 +1079,7 @@ const RightNavBar = (props) => {
             props.setGroupFourBreakerType("black");
             props.setIsGroupFourBreaker(false);
             SwalInitial();
+            dispatchCounter(increaseCouter());
           }
           // end my code for breaker pop up
         }
@@ -1015,6 +1101,23 @@ const RightNavBar = (props) => {
           props.setGroupFourBreakerType("black");
           props.setIsGroupFourBreaker(false);
           SwalInitial();
+          dispatchCounter(increaseCouter());
+        } else if (
+          (props.rndGroupFour === 25 && props.hallLedTv == "connected") ||
+          (props.rndGroupFour === 26 && props.hallLight01 === "connected") ||
+          (props.rndGroupFour === 27 && props.hallLight02 == "connected") ||
+          (props.rndGroupFour === 28 && props.livingLight01 == "connected") ||
+          (props.rndGroupFour === 29 && props.livingLight02 == "connected") ||
+          (props.rndGroupFour === 30 && props.livingSilingFan == "connected") ||
+          (props.rndGroupFour === 31 && props.toiletLight == "connected") ||
+          (props.rndGroupFour === 32 && props.toiletLight02 == "connected") ||
+          (props.rndGroupFour === 33 && props.toiletFan == "connected") ||
+          (props.rndGroupFour === 34 && props.toiletLight03 == "connected")
+        ) {
+          props.setGroupFourBreakerType("black");
+          props.setIsGroupFourBreaker(false);
+          SwalInitial();
+          dispatchCounter(increaseCouter());
         }
       } else {
         props.setGroupFourBreakerType("red");
@@ -1023,6 +1126,7 @@ const RightNavBar = (props) => {
     } else {
       if (rand >= 25 && rand <= 34) {
         SwalInitial();
+        dispatchCounter(increaseCouter());
       } else {
         props.setGroupFourBreakerType("red");
         props.setIsGroupFourBreaker(true);
@@ -1038,22 +1142,18 @@ const RightNavBar = (props) => {
   // GROUP 5
   // ***********************************
   const fifthGroupPass = () => {
-    dispatch(isHurray(true));
-    hurraySound();
-
-    setTimeout(() => {
-      dispatch(isHurray(false));
-    }, 3000);
+    props.setIsModalOpen(true);
+    // dispatch(isHurray(true));
+    // hurraySound();
 
     // setTimeout(() => {
-    //   SwalHurray("one", "one");
-    // }, 30);
-
-    setTimeout(() => {
-      props.setgroupFiveBreakerType("red");
-      props.setIsGroupFiveBreaker(true);
-    }, 3000);
-    navigate("/congratulation");
+    //   dispatch(isHurray(false));
+    // }, 3000);
+    // setTimeout(() => {
+    //   props.setgroupFiveBreakerType("red");
+    //   props.setIsGroupFiveBreaker(true);
+    // }, 3000);
+    // navigate("/congratulation");
   };
 
   const groupFifthBreakerHandlerOff = () => {
@@ -1313,6 +1413,7 @@ const RightNavBar = (props) => {
             SwalInitial();
             props.setgroupFiveBreakerType("black");
             props.setIsGroupFiveBreaker(false);
+            dispatchCounter(increaseCouter());
           }
         }
         //start my code for breaker pop up
@@ -1333,6 +1434,29 @@ const RightNavBar = (props) => {
           props.setgroupFiveBreakerType("black");
           props.setIsGroupFiveBreaker(false);
           SwalInitial();
+          dispatchCounter(increaseCouter());
+        } else if (
+          (props.rndGroupFive === 35 && props.hallLampFive === "connected") ||
+          (props.rndGroupFive === 36 &&
+            props.hallLight01Five === "connected") ||
+          (props.rndGroupFive === 37 &&
+            props.hallLight02Five === "connected") ||
+          (props.rndGroupFive === 38 && props.guestLamp === "connected") ||
+          (props.rndGroupFive === 39 && props.guestRadio === "connected") ||
+          (props.rndGroupFive === 40 && props.guestFan === "connected") ||
+          (props.rndGroupFive === 41 && props.guestLED === "connected") ||
+          (props.rndGroupFive === 42 && props.studyLamp === "connected") ||
+          (props.rndGroupFive === 43 && props.studyLamp02 === "connected") ||
+          (props.rndGroupFive === 44 &&
+            props.livingOneLignt01 === "connected") ||
+          (props.rndGroupFive === 45 &&
+            props.livingOneLignt02 === "connected") ||
+          (props.rndGroupFive === 46 && props.livingOneLignt03 === "connected")
+        ) {
+          SwalInitial();
+          props.setgroupFiveBreakerType("black");
+          props.setIsGroupFiveBreaker(false);
+          dispatchCounter(increaseCouter());
         }
       } else {
         // console.log("run else fifth");
@@ -1342,6 +1466,7 @@ const RightNavBar = (props) => {
     } else {
       if (rand >= 35 && rand <= 46) {
         SwalInitial();
+        dispatchCounter(increaseCouter());
       } else {
         props.setgroupFiveBreakerType("red");
         props.setIsGroupFiveBreaker(true);
@@ -1357,22 +1482,18 @@ const RightNavBar = (props) => {
   // GROUP 6
   // ***********************************
   const sixGroupPass = () => {
-    dispatch(isHurray(true));
-    hurraySound();
-
-    setTimeout(() => {
-      dispatch(isHurray(false));
-    }, 3000);
+    props.setIsModalOpen(true);
+    // dispatch(isHurray(true));
+    // hurraySound();
 
     // setTimeout(() => {
-    //   SwalHurray("one", "one");
-    // }, 30);
-
-    setTimeout(() => {
-      props.setLaundaryBreakerType("red");
-      props.setIsLaundaryBreaker(true);
-    }, 3000);
-    navigate("/congratulation");
+    //   dispatch(isHurray(false));
+    // }, 3000);
+    // setTimeout(() => {
+    //   props.setLaundaryBreakerType("red");
+    //   props.setIsLaundaryBreaker(true);
+    // }, 3000);
+    // navigate("/congratulation");
   };
 
   const laundaryBreakerHandlerOff = () => {
@@ -1427,6 +1548,7 @@ const RightNavBar = (props) => {
             props.setLaundaryBreakerType("black");
             props.setIsLaundaryBreaker(false);
             SwalInitial();
+            dispatchCounter(increaseCouter());
           }
           // end my code for breaker pop up
         }
@@ -1439,6 +1561,16 @@ const RightNavBar = (props) => {
           props.setLaundaryBreakerType("black");
           props.setIsLaundaryBreaker(false);
           SwalInitial();
+          dispatchCounter(increaseCouter());
+        } else if (
+          (props.rndLaundary === 47 && props.laundaryWashing === "connected") ||
+          (props.rndLaundary === 48 && props.laundaryLight01 === "connected") ||
+          (props.rndLaundary === 49 && props.laundaryLight02 === "connected")
+        ) {
+          props.setLaundaryBreakerType("black");
+          props.setIsLaundaryBreaker(false);
+          SwalInitial();
+          dispatchCounter(increaseCouter());
         }
       } else {
         // console.log("run else Six");
@@ -1448,6 +1580,7 @@ const RightNavBar = (props) => {
     } else {
       if (rand >= 47 && rand <= 49) {
         SwalInitial();
+        dispatchCounter(increaseCouter());
       } else {
         props.setLaundaryBreakerType("red");
         props.setIsLaundaryBreaker(true);
@@ -1726,7 +1859,7 @@ const RightNavBar = (props) => {
             </>
           </div>
         </div>
-        <h3 className="set-floor-title">Gound Floor</h3>
+        <h3 className="set-floor-title">House Breakers</h3>
         <hr />
       </div>
       {/* to open attic model */}
@@ -1807,11 +1940,11 @@ const RightNavBar = (props) => {
           Ground Floor
         </button>
       </div>
-      <div className="set-position-bottom-finish">
+      {/* <div className="set-position-bottom-finish">
         <button className="set-btn-finish" onClick={finishBreakerHandler}>
           Finish
         </button>
-      </div>
+      </div> */}
     </div>
   );
 };

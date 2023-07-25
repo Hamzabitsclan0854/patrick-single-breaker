@@ -50,6 +50,8 @@ const Attic = (props) => {
             <RightNavBar
               isModalOpen1={isModalOpen1}
               setIsModalOpen1={setIsModalOpen1}
+              isModalOpen={isModalOpen}
+              setIsModalOpen={setIsModalOpen}
               // navbar .............................
               atticTrial={atticTrial}
               setAtticTrial={setAtticTrial}
