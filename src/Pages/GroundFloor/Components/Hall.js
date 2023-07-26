@@ -23,6 +23,13 @@ const Hall = (props) => {
   // const counterHall = useSelector((state) => state.CounterDeviceReducer.count);
   // console.log(counterHall + " redux device counter");
 
+  const disconnectedDevices = useSelector(
+    (state) => state.CounterRemainingDevicesReducer.count
+  );
+  const redirectSorry = () => {
+    navigate("/sorry");
+  };
+
   const dispatch = useDispatch();
   const dispatchdisconnect = useDispatch();
   const dispatchconnect = useDispatch();
@@ -59,7 +66,7 @@ const Hall = (props) => {
       props.setFirstGroupBreakerType("black");
 
       props.setIsFirstGroupBreaker(false);
-      SwalBreakerOff();
+      SwalBreakerOff(disconnectedDevices, redirectSorry);
       // DISPATCH COUNTER REDUX
       dispatch(increaseDeviceCounter());
       errorSound();

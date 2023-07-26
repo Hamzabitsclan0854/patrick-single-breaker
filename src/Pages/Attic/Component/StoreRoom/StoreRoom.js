@@ -16,7 +16,7 @@ import {
   SwalDisconnected,
 } from "../../../Components/SwalModules";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   increaseDeviceCounter,
   connectDevice,
@@ -25,6 +25,13 @@ import {
 
 const StoreRoom = (props) => {
   const navigate = useNavigate();
+
+  const disconnectedDevices = useSelector(
+    (state) => state.CounterRemainingDevicesReducer.count
+  );
+  const redirectSorry = () => {
+    navigate("/sorry");
+  };
 
   const dispatch = useDispatch();
   const dispatchdisconnect = useDispatch();
@@ -55,7 +62,7 @@ const StoreRoom = (props) => {
       props.setgroupFiveBreakerType("black");
       errorSound();
       props.setIsGroupFiveBreaker(false);
-      SwalBreakerOff();
+      SwalBreakerOff(disconnectedDevices, redirectSorry);
       dispatch(increaseDeviceCounter());
       props.setAtticTrial(props.atticTrial + 1);
       localStorage.setItem("state-attic", JSON.stringify(props.atticTrial + 1));

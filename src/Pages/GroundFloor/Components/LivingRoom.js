@@ -31,6 +31,13 @@ const LivingRoom = (props) => {
   const dispatchdisconnect = useDispatch();
   const dispatchconnect = useDispatch();
 
+  const disconnectedDevices = useSelector(
+    (state) => state.CounterRemainingDevicesReducer.count
+  );
+  const redirectSorry = () => {
+    navigate("/sorry");
+  };
+
   const [errorSound] = useSound(error);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -63,7 +70,7 @@ const LivingRoom = (props) => {
     if (props.completeRnd === val && props.firstGroupBreakerType === "red") {
       props.setFirstGroupBreakerType("black");
       props.setIsFirstGroupBreaker(false);
-      SwalBreakerOff();
+      SwalBreakerOff(disconnectedDevices, redirectSorry);
       dispatch(increaseDeviceCounter());
       props.setGroundFloorTrial(props.groundFloorTrial + 1);
       localStorage.setItem("state", JSON.stringify(props.groundFloorTrial + 1));

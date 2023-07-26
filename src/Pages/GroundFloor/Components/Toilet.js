@@ -27,6 +27,13 @@ const Toilet = (props) => {
   const dispatchdisconnect = useDispatch();
   const dispatchconnect = useDispatch();
 
+  const disconnectedDevices = useSelector(
+    (state) => state.CounterRemainingDevicesReducer.count
+  );
+  const redirectSorry = () => {
+    navigate("/sorry");
+  };
+
   const [errorSound] = useSound(error);
 
   const [hover, setHover] = useState("");
@@ -52,7 +59,7 @@ const Toilet = (props) => {
 
       errorSound();
       props.setIsFirstGroupBreaker(false);
-      SwalBreakerOff();
+      SwalBreakerOff(disconnectedDevices, redirectSorry);
       dispatch(increaseDeviceCounter());
       props.setGroundFloorTrial(props.groundFloorTrial + 1);
       localStorage.setItem("state", JSON.stringify(props.groundFloorTrial + 1));

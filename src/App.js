@@ -26,6 +26,7 @@ import {
   SwalDisconnected,
   SwalDisconnectedCorrupt,
 } from "./Pages/Components/SwalModules";
+import Sorry from "./Pages/Congratulation/Sorry";
 
 function App() {
   const userName = useSelector((state) => state.UserReducer.userName);
@@ -593,6 +594,7 @@ function App() {
           />
           <Route path="/mask-group" element={<MaskGroup />} />
           <Route path="/congratulation" element={<Congratulation />} />
+          <Route path="/sorry" element={<Sorry />} />
           <Route
             path="/first-floor"
             element={

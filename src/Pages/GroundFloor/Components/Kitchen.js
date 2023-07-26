@@ -20,7 +20,7 @@ import MixtureOffIMG_D from "../images/MixtureOffIMG_D.png";
 import KitchenBlbOff_d from "../images/KitchenBlbOff_d.png";
 import SmookOn from "../images/SmookOn.png";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   increaseDeviceCounter,
   connectDevice,
@@ -29,9 +29,17 @@ import {
 
 import "antd/dist/antd.css";
 import { SwalBreakerOff, SwalDisconnected } from "../../Components/SwalModules";
+import CounterRemainingDevicesReducer from "./../../../Redux/Reducers/CounterRemainingDevices";
 
 const Kitchen = (props) => {
   const navigate = useNavigate();
+
+  const disconnectedDevices = useSelector(
+    (state) => state.CounterRemainingDevicesReducer.count
+  );
+  const redirectSorry = () => {
+    navigate("/sorry");
+  };
 
   const dispatch = useDispatch();
   const dispatchdisconnect = useDispatch();
@@ -74,11 +82,11 @@ const Kitchen = (props) => {
     if (props.rndKitchen === val && props.kitchenBreakerType === "red") {
       props.setKitchenBreakerType("black");
       props.setIsKitchenBreaker(false);
-      SwalBreakerOff();
       dispatch(increaseDeviceCounter());
       errorSound();
-      props.setGroundFloorTrial(props.groundFloorTrial + 1);
-      localStorage.setItem("state", JSON.stringify(props.groundFloorTrial + 1));
+      SwalBreakerOff(disconnectedDevices, redirectSorry);
+      // props.setGroundFloorTrial(props.groundFloorTrial + 1);
+      // localStorage.setItem("state", JSON.stringify(props.groundFloorTrial + 1));
     }
     props.setKitchenCorruptDevice(val);
     if (val === 10) {

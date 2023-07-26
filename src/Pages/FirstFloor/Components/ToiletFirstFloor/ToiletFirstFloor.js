@@ -18,7 +18,7 @@ import {
   SwalDisconnected,
 } from "../../../Components/SwalModules";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   increaseDeviceCounter,
   connectDevice,
@@ -27,7 +27,12 @@ import {
 
 const ToiletFirstFloor = (props) => {
   const navigate = useNavigate();
-
+  const disconnectedDevices = useSelector(
+    (state) => state.CounterRemainingDevicesReducer.count
+  );
+  const redirectSorry = () => {
+    navigate("/sorry");
+  };
   const dispatch = useDispatch();
   const dispatchdisconnect = useDispatch();
   const dispatchconnect = useDispatch();
@@ -62,7 +67,7 @@ const ToiletFirstFloor = (props) => {
       props.setGroupFourBreakerType("black");
       errorSound();
       props.setIsGroupFourBreaker(false);
-      SwalBreakerOff();
+      SwalBreakerOff(disconnectedDevices, redirectSorry);
       dispatch(increaseDeviceCounter());
       props.setFirstFloorTrial(props.firstFloorTrial + 1);
       localStorage.setItem(

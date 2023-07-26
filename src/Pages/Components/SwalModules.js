@@ -1,8 +1,11 @@
 import Swal from "sweetalert2";
 import React from "react";
 import Confetti from "react-confetti";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { isHurray } from "../../Redux/Action";
+import { rootReducer } from "../../Redux/Reducers";
+
+console.log(rootReducer);
 
 export const SwalInitial = () => {
   Swal.fire({
@@ -70,12 +73,22 @@ export const SwalDisconnectedCorrupt = () => {
     text: "You have disconnected all devices of the group from the socket.",
   });
 };
-export const SwalBreakerOff = () => {
+export const SwalBreakerOff = (devices, redirect) => {
   Swal.fire({
     title: "Oops... Breaker is off &#128576;",
     // text: "The device you have just plugged into a socket has a short circuit and that is not safe! First disconnect this device and then on the breaker again",
-    text: "The device you have just plugged into a socket has a short circuit and that is not safe! First disconnect this device and connect all remaining devices and then on the breaker again",
+    html: `The device you have just plugged into a socket has a short circuit and that is not safe! First disconnect this device and connect all remaining devices and then on the breaker again!<p style="border-bottom: 2px solid #000;display: inline-block;">Total number of disconnected devices <strong>${
+      devices - 1
+    }.</strong></p>`,
+    denyButtonColor: "#7399b4",
+    showDenyButton: true,
+    denyButtonText: `Continue`,
     confirmButtonColor: "#085CA8",
-    confirmButtonText: "I Understand",
+    confirmButtonText: "Finish",
+    // confirmButtonText: 'I understand',
+  }).then((result) => {
+    if (result.isConfirmed) {
+      setTimeout(redirect, 500);
+    }
   });
 };
