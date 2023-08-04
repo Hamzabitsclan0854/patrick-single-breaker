@@ -88,7 +88,7 @@ export const SwalStarter = () => {
         <td style="width: 50%;text-align: left;padding-left: 14px;margin-top: 18px;">
           <div className="set-legend-text">
             <p style="margin-bottom: 0px;font-size: 18px;color:#B41D1D;line-height: 6px;"><strong><sup>Group&nbsp;6</sup></strong></p>
-            <p style="margin-bottom: 0px; font-size: 16px;"><small>laundry</small></p>
+            <p style="margin-bottom: 0px; font-size: 16px;"><small>Laundry</small></p>
           </div>
         </td>
       </tr>
@@ -132,7 +132,7 @@ export const SwalDisconnectedCorrupt = () => {
   Swal.fire({
     confirmButtonColor: "#085CA8",
     confirmButtonText: "I Understand",
-    title: "Now You Can On the breaker!",
+    title: "Now You Can On The breaker!",
     text: "You have disconnected all devices of the group from the socket.",
   });
 };

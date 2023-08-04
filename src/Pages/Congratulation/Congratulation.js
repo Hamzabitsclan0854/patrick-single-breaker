@@ -109,9 +109,18 @@ const Congratulation = () => {
           ) : (
             <>
               <div style={{ height: "200px", width: "200px", margin: "auto" }}>
-                {counter == 1 &&
-                counterDevice == 1 &&
-                disconnectedDevices == 1 ? (
+                {(counter == 1 &&
+                  counterDevice == 1 &&
+                  disconnectedDevices == 1) ||
+                (counter == 0 &&
+                  counterDevice == 1 &&
+                  disconnectedDevices == 1) ||
+                (counter == 1 &&
+                  counterDevice == 0 &&
+                  disconnectedDevices == 1) ||
+                (counter == 0 &&
+                  counterDevice == 0 &&
+                  disconnectedDevices == 1) ? (
                   <CircularProgressbar value={100} text={"100%"} />
                 ) : (
                   <CircularProgressbar

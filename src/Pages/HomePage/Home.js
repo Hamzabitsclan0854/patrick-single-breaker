@@ -26,12 +26,11 @@ const Home = () => {
     // const regName = /^[a-zA-Z]/;
 
     dispatch(userinfo(userName));
-//start my code from here
+    //start my code from here
     if (userName !== "") {
       if (regName.test(userName)) {
         setPhase("second");
-      }
-       else {
+      } else {
         setErrUserName("* Name must contain First, Middle, and Last name");
       }
     } else {
@@ -87,7 +86,7 @@ const Home = () => {
                     placeholder="Enter Your Name?"
                   />
                   <button
-                    className="btn-blue"
+                    className="btn-blue set-opacity-btn"
                     style={{
                       paddingRight: "10px",
                       padding: "4px 12px 1px 12px",
@@ -111,7 +110,7 @@ const Home = () => {
                 </div>
                 <div>
                   <button
-                    className="btn-blue"
+                    className="btn-blue set-opacity-btn"
                     style={{
                       padding: "8px 30px",
                       marginTop: "6%",
@@ -145,7 +144,9 @@ const Home = () => {
               /> */}
                 <button
                   className={
-                    largeBtn === "exercise" ? "btn-blue mx-3" : "btn-white mx-3"
+                    largeBtn === "exercise"
+                      ? "btn-blue set-opacity-btn mx-3"
+                      : "btn-white mx-3"
                   }
                   style={{ padding: "14px 30px", cursor: "not-allowed" }}
                   onClick={() => setLargeBtn("exercise")}
@@ -154,7 +155,9 @@ const Home = () => {
                 </button>
                 <button
                   className={
-                    largeBtn === "IQ test" ? "btn-blue mx-3" : "btn-white mx-3"
+                    largeBtn === "IQ test"
+                      ? "btn-blue set-opacity-btn mx-3"
+                      : "btn-white mx-3"
                   }
                   style={{ padding: "14px 30px" }}
                   onClick={() => setLargeBtn("IQ test")}
@@ -162,7 +165,7 @@ const Home = () => {
                   Do you want to perform a IQ test?
                 </button>
                 <button
-                  className="btn-blue"
+                  className="btn-blue set-opacity-btn"
                   style={{ paddingRight: "10px", padding: "4px 12px 1px 12px" }}
                 >
                   <i
@@ -183,7 +186,11 @@ const Home = () => {
               </div>
               <div className="d-flex justify-content-evenly">
                 <button
-                  className={smallBtn === "back" ? "btn-blue" : "btn-white"}
+                  className={
+                    smallBtn === "back"
+                      ? "btn-blue set-opacity-btn"
+                      : "btn-white"
+                  }
                   onMouseEnter={() => setSmallBtn("back")}
                   style={{
                     padding: "8px 30px",
@@ -194,7 +201,11 @@ const Home = () => {
                   Back
                 </button>
                 <button
-                  className={smallBtn === "next" ? "btn-blue" : "btn-white"}
+                  className={
+                    smallBtn === "next"
+                      ? "btn-blue set-opacity-btn"
+                      : "btn-white"
+                  }
                   onMouseEnter={() => setSmallBtn("next")}
                   style={{
                     padding: "8px 30px",

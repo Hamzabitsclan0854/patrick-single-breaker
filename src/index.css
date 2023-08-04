@@ -39,6 +39,14 @@ code {
     border-radius: 32px;
     color: #fff;
 }
+.set-opacity-btn {
+  opacity: 0.9;
+  transition: .3s;
+}
+.set-opacity-btn:hover {
+  transition: .3s;
+  opacity: 1;
+}
 @media (max-width: 1024px){
   .main-home-div{
     display: none;
