@@ -169,7 +169,7 @@ const RightNavBar = (props) => {
   // GROUP 1
   // ***********************************
   const firstGroupPass = () => {
-    props.setIsModalOpen(true);
+    // props.setIsModalOpen(true);
     // dispatch(isHurray(true));
     // hurraySound();
 
@@ -181,6 +181,9 @@ const RightNavBar = (props) => {
     //   props.setIsFirstGroupBreaker(true);
     // }, 3000);
     // navigate("/congratulation");
+    setTimeout(() => {
+      navigate("/congratulation");
+    }, 500);
   };
 
   const groupFirstBreakerHandlerOff = () => {
@@ -436,7 +439,7 @@ const RightNavBar = (props) => {
   const lastAssignmentPass = () => {
     // dispatch(isHurray(true));
     // hurraySound();
-    props.setIsModalOpen(true);
+    // props.setIsModalOpen(true);
     // setTimeout(() => {
     //   dispatch(isHurray(false));
     // }, 3000);
@@ -449,7 +452,9 @@ const RightNavBar = (props) => {
     //   props.setKitchenBreakerType("red");
     //   props.setIsKitchenBreaker(true);
     // }, 3000);
-    // navigate("/congratulation");
+    setTimeout(() => {
+      navigate("/congratulation");
+    }, 500);
   };
 
   // const kitchencolor = useSelector(
@@ -614,7 +619,7 @@ const RightNavBar = (props) => {
   // GROUP 3
   // ***********************************
   const thirdGroupPass = () => {
-    props.setIsModalOpen(true);
+    // props.setIsModalOpen(true);
     // dispatch(isHurray(true));
     // hurraySound();
 
@@ -626,6 +631,9 @@ const RightNavBar = (props) => {
     //   props.setIsGroupThreeBreaker(true);
     // }, 3000);
     // navigate("/congratulation");
+    setTimeout(() => {
+      navigate("/congratulation");
+    }, 500);
   };
   const groupThreeBreakerHandlerOff = () => {
     if (
@@ -870,7 +878,7 @@ const RightNavBar = (props) => {
   // GROUP 4
   // ***********************************
   const forthGroupPass = () => {
-    props.setIsModalOpen(true);
+    // props.setIsModalOpen(true);
     // dispatch(isHurray(true));
     // hurraySound();
 
@@ -882,6 +890,9 @@ const RightNavBar = (props) => {
     //   props.setIsGroupFourBreaker(true);
     // }, 3000);
     // navigate("/congratulation");
+    setTimeout(() => {
+      navigate("/congratulation");
+    }, 500);
   };
   const groupFourBreakerHandlerOff = () => {
     if (
@@ -1142,7 +1153,7 @@ const RightNavBar = (props) => {
   // GROUP 5
   // ***********************************
   const fifthGroupPass = () => {
-    props.setIsModalOpen(true);
+    // props.setIsModalOpen(true);
     // dispatch(isHurray(true));
     // hurraySound();
 
@@ -1154,6 +1165,9 @@ const RightNavBar = (props) => {
     //   props.setIsGroupFiveBreaker(true);
     // }, 3000);
     // navigate("/congratulation");
+    setTimeout(() => {
+      navigate("/congratulation");
+    }, 500);
   };
 
   const groupFifthBreakerHandlerOff = () => {
@@ -1482,7 +1496,7 @@ const RightNavBar = (props) => {
   // GROUP 6
   // ***********************************
   const sixGroupPass = () => {
-    props.setIsModalOpen(true);
+    // props.setIsModalOpen(true);
     // dispatch(isHurray(true));
     // hurraySound();
 
@@ -1494,6 +1508,9 @@ const RightNavBar = (props) => {
     //   props.setIsLaundaryBreaker(true);
     // }, 3000);
     // navigate("/congratulation");
+    setTimeout(() => {
+      navigate("/congratulation");
+    }, 500);
   };
 
   const laundaryBreakerHandlerOff = () => {

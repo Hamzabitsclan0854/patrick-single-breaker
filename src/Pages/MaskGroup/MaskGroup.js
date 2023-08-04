@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import ErrorPage from "../404/ErrorPage";
 import Avator from "../Components/Avator";
 import FrontScreenModel from "../Components/FrontScreenModel";
-import {SwalStarter} from "../Components/SwalModules"
+import { SwalStarter } from "../Components/SwalModules";
 // import AtticModel from "../../PopUpModels/AtticModel";
 // import FirstFloorModel from "../../PopUpModels/FirstFloorModel";
 // import GroundFloorModel from "../../PopUpModels/GroundFloorModel"
@@ -13,18 +13,17 @@ const MaskGroup = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const navigate = useNavigate();
   const [btnPhase, setBtnPhase] = useState("attic");
-  const [firstBtn, setfirstBtn] = useState('attic')
-  const [showAttic,setShowAttic] = useState(false)
+  const [firstBtn, setfirstBtn] = useState("attic");
+  const [showAttic, setShowAttic] = useState(false);
   // const [showFirstFloor,setshowFirstFloor] = useState(false)
   // const [showGroundFloor,setshowGroundFloor] = useState(false)
   // const showModal = () => {
   //   props.setIsModalOpen2(true);
   // };
 
-
   return (
     <>
-    {/* <div style={{display:'none'}}>
+      {/* <div style={{display:'none'}}>
       <FrontScreenModel 
       isModalOpen={isModalOpen}
       setIsModalOpen={setIsModalOpen}
@@ -41,15 +40,12 @@ const MaskGroup = () => {
           })`,
           height: "100vh",
           width: "auto",
-          position:"relative"
+          position: "relative",
         }}
         className="main-mask-div"
       >
-        <div style={{position: "absolute",
-            right: '2%', top:'2%'}}>
-        <Avator
-         phase={'home'}
-        />
+        <div style={{ position: "absolute", right: "2%", top: "2%" }}>
+          <Avator phase={"home"} />
         </div>
 
         <div id="clouds">
@@ -60,27 +56,25 @@ const MaskGroup = () => {
           <div class="cloud x5"></div>
           <div class="cloud x6"></div>
         </div>
-        
-        <div className="div-btn-01-maskGroup">
-        <button
-              // className={firstBtn === "attic" ? 'btn-01-maskGroup' : "btn-maskGroup mb-4 "}
-              className={"btn-maskGroup set-btn-mask-btn-open boom-bum"}
 
-              onMouseEnter={() => {
-                setBtnPhase("attic")
-                setfirstBtn('')
-              }}
-            
-              onMouseLeave={()=> setBtnPhase("")}
-              onClick={() => {
-                // setShowAttic(true)
-                navigate("/ground-floor");
-                SwalStarter();
-                localStorage.setItem('state', JSON.stringify(-4))
-              }}
-            >
-              Open !
-            </button>
+        <div className="div-btn-01-maskGroup">
+          <button
+            // className={firstBtn === "attic" ? 'btn-01-maskGroup' : "btn-maskGroup mb-4 "}
+            className={"btn-maskGroup set-btn-mask-btn-open boom-bum"}
+            onMouseEnter={() => {
+              setBtnPhase("attic");
+              setfirstBtn("");
+            }}
+            onMouseLeave={() => setBtnPhase("")}
+            onClick={() => {
+              // setShowAttic(true)
+              navigate("/ground-floor");
+              SwalStarter();
+              localStorage.setItem("state", JSON.stringify(-4));
+            }}
+          >
+            Open !
+          </button>
           <div className="d-flex">
             {/* start my changes from 21/12/2022..................................... */}
             {/* <div
@@ -94,7 +88,7 @@ const MaskGroup = () => {
             ></div>  */}
             {/* end my changes from 21/12/2022..................................... */}
 
-             {/* to open attic model */}
+            {/* to open attic model */}
             {/* {
         showAttic && (
           <AtticModel isModalOpen={isModalOpen}
@@ -102,9 +96,9 @@ const MaskGroup = () => {
 
         )
       } */}
-             {/* to open first floor model  */}
+            {/* to open first floor model  */}
 
-             {/* {
+            {/* {
         showFirstFloor && (
           <FirstFloorModel isModalOpen={isModalOpen}
             setIsModalOpen={setIsModalOpen}/> 
@@ -112,9 +106,9 @@ const MaskGroup = () => {
         )
       } */}
 
-      {/* to open ground floor model  */}
+            {/* to open ground floor model  */}
 
-      {/* {
+            {/* {
         showGroundFloor && (
           <GroundFloorModel isModalOpen={isModalOpen}
             setIsModalOpen={setIsModalOpen}/> 
@@ -139,7 +133,6 @@ const MaskGroup = () => {
               Attic
             </button> */}
             {/* end my changes from 21/12/2022..................................... */}
-
           </div>
           <div className="d-flex">
             {/* start my changes from 21/12/2022..................................... */}
@@ -172,11 +165,10 @@ const MaskGroup = () => {
               First Floor
             </button> */}
             {/* end my changes from 21/12/2022..................................... */}
-
           </div>
           <div className="d-flex">
             {/* start my changes from 21/12/2022..................................... */}
-{/* 
+            {/* 
             <div
               className="mask-line"
               style={{
@@ -202,7 +194,6 @@ const MaskGroup = () => {
               Ground Floor
             </button> */}
             {/* end my changes from 21/12/2022..................................... */}
-
           </div>
         </div>
       </div>

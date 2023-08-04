@@ -51,6 +51,13 @@
   font-family: 'Nunito', sans-serif;
   
 }
+.set-my-title-size {
+  font-size: 2em !important;
+}
+.set-my-custom-container {
+  margin: 0px 12px !important;
+}
+/* .modal-my-custom  */
 .groupB {
   padding-top: 41px;
 }

@@ -64,8 +64,8 @@ function App() {
   const [allCorruptDevice, setAllCorruptDevice] = useState(0);
   const [rndAll, setRndAll] = useState(0);
 
-  const [firstGroupBreakerType, setFirstGroupBreakerType] = useState("black");
-  const [isFirstGroupBreaker, setIsFirstGroupBreaker] = useState(false);
+  const [firstGroupBreakerType, setFirstGroupBreakerType] = useState("red");
+  const [isFirstGroupBreaker, setIsFirstGroupBreaker] = useState(true);
 
   useEffect(() => {
     setRndAll(Math.floor(Math.random() * 49) + 1);
@@ -119,8 +119,8 @@ function App() {
 
   const [kitchenCorruptDevice, setKitchenCorruptDevice] = useState(0);
   const [rndKitchen, setRndKitchen] = useState(0);
-  const [kitchenBreakerType, setKitchenBreakerType] = useState("black");
-  const [isKitchenBreaker, setIsKitchenBreaker] = useState(false);
+  const [kitchenBreakerType, setKitchenBreakerType] = useState("red");
+  const [isKitchenBreaker, setIsKitchenBreaker] = useState(true);
 
   // useEffect(() => {
   //   setRndKitchen(Math.floor(Math.random() * 5) + 1);
@@ -171,8 +171,8 @@ function App() {
   // GROUP 3 BREAKER
   const [groupThreeCorruptDevice, setGroupThreeCorruptDevice] = useState(0);
   const [rndGroupThree, setRndGroupThree] = useState(0);
-  const [groupThreeBreakerType, setGroupThreeBreakerType] = useState("black");
-  const [isGroupThreeBreaker, setIsGroupThreeBreaker] = useState(false);
+  const [groupThreeBreakerType, setGroupThreeBreakerType] = useState("red");
+  const [isGroupThreeBreaker, setIsGroupThreeBreaker] = useState(true);
 
   // useEffect(() => {
   //   setRndGroupThree(Math.floor(Math.random() * 9) + 1);
@@ -231,8 +231,8 @@ function App() {
 
   const [groupFourCorruptDevice, setGroupFourCorruptDevice] = useState(0);
   const [rndGroupFour, setRndGroupFour] = useState(0);
-  const [groupFourBreakerType, setGroupFourBreakerType] = useState("black");
-  const [isGroupFourBreaker, setIsGroupFourBreaker] = useState(false);
+  const [groupFourBreakerType, setGroupFourBreakerType] = useState("red");
+  const [isGroupFourBreaker, setIsGroupFourBreaker] = useState(true);
 
   // useEffect(() => {
   //   setRndGroupFour(Math.floor(Math.random() * 10) + 1);
@@ -298,8 +298,8 @@ function App() {
 
   const [groupFiveCorruptDevice, setGroupFiveCorruptDevice] = useState(0);
   const [rndGroupFive, setRndGroupFive] = useState(0);
-  const [groupFiveBreakerType, setgroupFiveBreakerType] = useState("black");
-  const [isGroupFiveBreaker, setIsGroupFiveBreaker] = useState(false);
+  const [groupFiveBreakerType, setgroupFiveBreakerType] = useState("red");
+  const [isGroupFiveBreaker, setIsGroupFiveBreaker] = useState(true);
 
   // useEffect(() => {
   //   setRndGroupFive(Math.floor(Math.random() * 12) + 1);
@@ -358,8 +358,8 @@ function App() {
 
   const [laundaryCorruptDevice, setLaundaryCorruptDevice] = useState(0);
   const [rndLaundary, setRndLaundary] = useState(0);
-  const [laundaryBreakerType, setLaundaryBreakerType] = useState("black");
-  const [isLaundaryBreaker, setIsLaundaryBreaker] = useState(false);
+  const [laundaryBreakerType, setLaundaryBreakerType] = useState("red");
+  const [isLaundaryBreaker, setIsLaundaryBreaker] = useState(true);
 
   // useEffect(() => {
   //   setRndLaundary(Math.floor(Math.random() * 3) + 1);

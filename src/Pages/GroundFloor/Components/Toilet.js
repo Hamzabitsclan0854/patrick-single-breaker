@@ -31,7 +31,7 @@ const Toilet = (props) => {
     (state) => state.CounterRemainingDevicesReducer.count
   );
   const redirectSorry = () => {
-    navigate("/sorry");
+    navigate("/congratulation");
   };
 
   const [errorSound] = useSound(error);

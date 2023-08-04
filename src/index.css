@@ -31,6 +31,14 @@ code {
 .ant-modal-body {
   min-height: 172px !important;
 }
+.set-bg-centent-explain {
+  /* background-color: rgb(204, 102, 74); */
+  background: linear-gradient(180deg, #CC664A 0%, #cf7359 35%, #FCC184 100%);
+    width: 32em;
+    padding: 32px;
+    border-radius: 32px;
+    color: #fff;
+}
 @media (max-width: 1024px){
   .main-home-div{
     display: none;
