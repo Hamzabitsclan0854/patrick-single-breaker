@@ -9,7 +9,7 @@ console.log(rootReducer);
 
 export const SwalInitial = () => {
   Swal.fire({
-    title: "You Can't On This Breaker 	&#128542",
+    title: "You can't on this breaker 	&#128542",
     // showConfirmButton: false,
     // text: "One device is not working properly you have to first disconnect all the devices",
     text: "One device is not working properly you have to first disconnect all the devices against this breaker and if you want to see these devices kindly check the legend and go to this relevant floor.",
@@ -132,14 +132,14 @@ export const SwalDisconnectedCorrupt = () => {
   Swal.fire({
     confirmButtonColor: "#085CA8",
     confirmButtonText: "I Understand",
-    title: "Now You Can On The breaker!",
+    title: "Now you can on the breaker!",
     text: "You have disconnected all devices of the group from the socket.",
   });
 };
 export const SwalBreakerOff = (devices, redirect) => {
   Swal.fire({
     // title: "Oops... Breaker is off &#128576;",
-    title: "Oops... Breaker is Getting off &#128576;",
+    title: "Oops... Breaker is getting off &#128576;",
     // text: "The device you have just plugged into a socket has a short circuit and that is not safe! First disconnect this device and then on the breaker again",
     html: `The device you have just plugged into a socket has a short circuit and that is not safe! First disconnect this device and connect all remaining devices and then on the breaker again!`,
     // <p style="border-bottom: 2px solid #000;display: inline-block;">Total number of disconnected devices <strong>${
