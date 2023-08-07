@@ -23,6 +23,7 @@ import {
   increaseDeviceCounter,
   connectDevice,
   disconnectDevice,
+  showFinishBtn,
 } from "../../../../Redux/Action";
 
 const HallAttic = (props) => {
@@ -59,6 +60,7 @@ const HallAttic = (props) => {
     if (props.rndGroupFive === val) {
       props.setGroupFiveCorruptDevice(0);
       props.setgroupFiveBreakerType("black");
+      dispatch(showFinishBtn());
     }
   };
 

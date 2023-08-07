@@ -23,6 +23,7 @@ import {
   increaseDeviceCounter,
   connectDevice,
   disconnectDevice,
+  showFinishBtn,
 } from "../../../../Redux/Action";
 
 const ToiletFirstFloor = (props) => {
@@ -59,6 +60,7 @@ const ToiletFirstFloor = (props) => {
     if (props.rndGroupFour === val) {
       props.setGroupFourCorruptDevice(0);
       props.setGroupFourBreakerType("black");
+      dispatch(showFinishBtn());
     }
   };
 

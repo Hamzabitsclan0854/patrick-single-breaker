@@ -22,6 +22,7 @@ import {
   increaseDeviceCounter,
   connectDevice,
   disconnectDevice,
+  showFinishBtn,
 } from "../../../../Redux/Action";
 
 const HallFirstFloor = (props) => {
@@ -57,6 +58,7 @@ const HallFirstFloor = (props) => {
     if (props.rndGroupFour === val) {
       props.setGroupFourCorruptDevice(0);
       props.setGroupFourBreakerType("black");
+      dispatch(showFinishBtn());
     }
   };
 

@@ -25,6 +25,7 @@ import {
   increaseDeviceCounter,
   connectDevice,
   disconnectDevice,
+  showFinishBtn,
 } from "../../../Redux/Action";
 
 import "antd/dist/antd.css";
@@ -75,6 +76,7 @@ const Kitchen = (props) => {
     if (props.rndKitchen === val) {
       props.setKitchenCorruptDevice(0);
       props.setKitchenBreakerType("black");
+      dispatch(showFinishBtn());
     }
   };
 

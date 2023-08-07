@@ -24,6 +24,7 @@ import {
   increaseDeviceCounter,
   connectDevice,
   disconnectDevice,
+  showFinishBtn,
 } from "../../../../Redux/Action";
 
 const LivingRoomTwo = (props) => {
@@ -57,6 +58,7 @@ const LivingRoomTwo = (props) => {
     if (val === 24) {
       props.setLivingTwoSmallLamp("disconnect");
       dispatchdisconnect(disconnectDevice());
+      dispatch(showFinishBtn());
     }
 
     if (props.rndGroupThree === val) {

@@ -22,6 +22,7 @@ import {
   increaseDeviceCounter,
   connectDevice,
   disconnectDevice,
+  showFinishBtn,
 } from "../../../../Redux/Action";
 
 const BedRoomFirstFloor = (props) => {
@@ -56,6 +57,7 @@ const BedRoomFirstFloor = (props) => {
     if (props.rndGroupFour === val) {
       props.setGroupFourCorruptDevice(0);
       props.setGroupFourBreakerType("black");
+      dispatch(showFinishBtn());
     }
   };
 

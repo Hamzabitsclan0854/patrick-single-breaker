@@ -6,6 +6,7 @@ import BreakerReducer from "./BreakerReducer";
 import CounterReducer from "./CounterReducer";
 import CounterDeviceReducer from "./CounterDeviceReducer";
 import CounterRemainingDevicesReducer from "./CounterRemainingDevices";
+import ShowFinishReducer from "./ShowFinishReducer";
 
 export const rootReducer = combineReducers({
   UserReducer: UserReducer,
@@ -15,4 +16,5 @@ export const rootReducer = combineReducers({
   CounterReducer: CounterReducer,
   CounterDeviceReducer: CounterDeviceReducer,
   CounterRemainingDevicesReducer: CounterRemainingDevicesReducer,
+  ShowFinishReducer: ShowFinishReducer,
 });

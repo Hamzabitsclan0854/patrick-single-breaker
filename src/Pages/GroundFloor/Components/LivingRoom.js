@@ -22,6 +22,7 @@ import {
   increaseDeviceCounter,
   connectDevice,
   disconnectDevice,
+  showFinishBtn,
 } from "../../../Redux/Action";
 
 const LivingRoom = (props) => {
@@ -63,6 +64,7 @@ const LivingRoom = (props) => {
     if (props.completeRnd === val) {
       props.setCompleteCorruptDevice(0);
       props.setFirstGroupBreakerType("black");
+      dispatch(showFinishBtn());
     }
   };
 

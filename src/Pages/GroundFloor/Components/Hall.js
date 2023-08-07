@@ -12,6 +12,7 @@ import {
   increaseDeviceCounter,
   connectDevice,
   disconnectDevice,
+  showFinishBtn,
 } from "../../../Redux/Action";
 import Swal from "sweetalert2";
 import useSound from "use-sound";
@@ -58,6 +59,7 @@ const Hall = (props) => {
     if (props.completeRnd === val) {
       props.setCompleteCorruptDevice(0);
       props.setFirstGroupBreakerType("black");
+      dispatch(showFinishBtn());
     }
   };
 

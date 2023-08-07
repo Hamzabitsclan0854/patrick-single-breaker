@@ -37,6 +37,8 @@ import {
 const RightNavBar = (props) => {
   const { id } = useParams();
 
+  const showFinishBtn = useSelector((state) => state.ShowFinishReducer.show);
+  console.log(showFinishBtn);
   // const counter = useSelector((state) => state.CounterReducer.count);
   // console.log(counter + " redux counter");
 
@@ -1614,7 +1616,10 @@ const RightNavBar = (props) => {
   // FINISH
   // ***********************************
   const finishBreakerHandler = () => {
-    FinishSwal();
+    // FinishSwal();
+    setTimeout(() => {
+      navigate("/congratulation");
+    }, 500);
     // if (rand >= 1 && rand <= 49) {
     //start my code for breaker pop up
     // if (
@@ -1957,11 +1962,14 @@ const RightNavBar = (props) => {
           Ground Floor
         </button>
       </div>
-      {/* <div className="set-position-bottom-finish">
-        <button className="set-btn-finish" onClick={finishBreakerHandler}>
-          Finish
-        </button>
-      </div> */}
+
+      {showFinishBtn && (
+        <div className="set-position-bottom-finish">
+          <button className="set-btn-finish" onClick={finishBreakerHandler}>
+            Finish
+          </button>
+        </div>
+      )}
     </div>
   );
 };

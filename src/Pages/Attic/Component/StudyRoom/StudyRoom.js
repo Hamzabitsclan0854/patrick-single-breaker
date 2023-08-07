@@ -19,6 +19,7 @@ import {
   increaseDeviceCounter,
   connectDevice,
   disconnectDevice,
+  showFinishBtn,
 } from "../../../../Redux/Action";
 
 const StudyRoom = (props) => {
@@ -49,6 +50,7 @@ const StudyRoom = (props) => {
     if (props.rndGroupFive === val) {
       props.setGroupFiveCorruptDevice(0);
       props.setgroupFiveBreakerType("black");
+      dispatch(showFinishBtn());
     }
   };
 

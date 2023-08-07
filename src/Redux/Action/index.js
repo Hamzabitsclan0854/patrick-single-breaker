@@ -112,3 +112,9 @@ export const connectDevice = () => {
     type: "connectDevice",
   };
 };
+
+export const showFinishBtn = () => {
+  return {
+    type: "showFinishBtn",
+  };
+};

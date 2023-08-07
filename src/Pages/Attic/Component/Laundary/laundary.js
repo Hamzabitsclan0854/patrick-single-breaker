@@ -21,6 +21,7 @@ import {
   increaseDeviceCounter,
   connectDevice,
   disconnectDevice,
+  showFinishBtn,
 } from "../../../../Redux/Action";
 
 const Laundary = (props) => {
@@ -57,6 +58,7 @@ const Laundary = (props) => {
     if (props.rndLaundary === val) {
       props.setLaundaryCorruptDevice(0);
       props.setLaundaryBreakerType("black");
+      dispatch(showFinishBtn());
     }
   };
 

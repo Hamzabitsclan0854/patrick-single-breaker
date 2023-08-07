@@ -17,6 +17,7 @@ import {
   increaseDeviceCounter,
   connectDevice,
   disconnectDevice,
+  showFinishBtn,
 } from "../../../Redux/Action";
 import { useNavigate } from "react-router-dom";
 
@@ -50,6 +51,7 @@ const Toilet = (props) => {
     if (props.completeRnd === val) {
       props.setCompleteCorruptDevice(0);
       props.setFirstGroupBreakerType("black");
+      dispatch(showFinishBtn());
     }
   };
 
