@@ -142,7 +142,7 @@ const Home = () => {
                 type="text"
                 placeholder="Enter Your Name?"
               /> */}
-                <button
+                {/* <button
                   className={
                     largeBtn === "exercise"
                       ? "btn-blue set-opacity-btn mx-3"
@@ -152,7 +152,7 @@ const Home = () => {
                   onClick={() => setLargeBtn("exercise")}
                 >
                   Do you want to move for an exercise?
-                </button>
+                </button> */}
                 <button
                   className={
                     largeBtn === "IQ test"

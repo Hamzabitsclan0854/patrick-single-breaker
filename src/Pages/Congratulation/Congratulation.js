@@ -130,25 +130,25 @@ const Congratulation = () => {
                 )}
               </div>
               <div className="mt-4 resultFormat">
-                <p className="mb-0 set-font-16">
+                {/* <p className="mb-0 set-font-16">
                   Maximum of 10 Breaker attempts:
-                </p>
+                </p> */}
                 <p className="set-font-20">
                   You did experiment with{" "}
                   <strong style={{ borderBottom: "1px solid #fff" }}>
                     {counter} breakers.{" "}
                   </strong>
                 </p>
-                <p className="mb-0 set-font-16">
+                {/* <p className="mb-0 set-font-16">
                   Maximum of 10 Device attempts:
-                </p>
+                </p> */}
                 <p className="set-font-20">
                   You did experiment with{" "}
                   <strong style={{ borderBottom: "1px solid #fff" }}>
                     {counterDevice} Devices.
                   </strong>
                 </p>
-                <p className="mb-0 set-font-16">Maximum of 49 Devices:</p>
+                {/* <p className="mb-0 set-font-16">Maximum of 49 Devices:</p> */}
                 <p className="set-font-20">
                   You did disconnect{" "}
                   <strong style={{ borderBottom: "1px solid #fff" }}>
