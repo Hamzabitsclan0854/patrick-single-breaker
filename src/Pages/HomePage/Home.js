@@ -22,8 +22,8 @@ const Home = () => {
 
   const userHandler = (e) => {
     e.preventDefault();
-    const regName = /^[a-zA-Z]+ [a-zA-Z]+ [a-zA-Z]+$/;
-    // const regName = /^[a-zA-Z]/;
+    // const regName = /^[a-zA-Z]+ [a-zA-Z]+ [a-zA-Z]+$/;
+    const regName = /^[a-zA-Z]/;
 
     dispatch(userinfo(userName));
     //start my code from here
