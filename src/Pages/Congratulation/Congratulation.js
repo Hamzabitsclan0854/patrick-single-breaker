@@ -23,6 +23,20 @@ const Congratulation = () => {
   const disconnectedDevices = useSelector(
     (state) => state.CounterRemainingDevicesReducer.count
   );
+  useEffect(() => {
+    const handleBeforeUnload = (event) => {
+      const message = "Are you sure you want to leave this page?";
+      event.returnValue = message; // Standard for most browsers
+      return message; // For some older browsers
+    };
+
+    window.addEventListener("beforeunload", handleBeforeUnload);
+
+    return () => {
+      // Remove the event listener when the component unmounts
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+    };
+  }, []);
 
   // TOTAL OF COUNTERS
   const [breakerTotal, setBreakerTotal] = useState(10);
@@ -48,7 +62,7 @@ const Congratulation = () => {
 
   const handleOk = () => {
     // props.setIsModalOpen(false);
-    navigate("/congratulation");
+    navigate("/result");
     // dispatch(isHurray(true));
     // hurraySound();
 
@@ -67,9 +81,6 @@ const Congratulation = () => {
     // }
   };
 
-  const handleRefresh = () => {
-    window.location.href = "/";
-  };
   return (
     <>
       {isHurray ? (

@@ -92,7 +92,7 @@ function App() {
       if (rndAll >= 1 && rndAll <= 9) {
         SwalDisconnectedCorrupt();
       } else {
-        SwalDisconnected();
+        // SwalDisconnected();
       }
     }
   }, [
@@ -142,7 +142,7 @@ function App() {
       if (rndAll >= 10 && rndAll <= 15) {
         SwalDisconnectedCorrupt();
       } else {
-        SwalDisconnected();
+        // SwalDisconnected();
       }
     }
   }, [
@@ -197,7 +197,7 @@ function App() {
       if (rndAll >= 16 && rndAll <= 24) {
         SwalDisconnectedCorrupt();
       } else {
-        SwalDisconnected();
+        // SwalDisconnected();
       }
     }
   }, [
@@ -258,7 +258,7 @@ function App() {
       if (rndAll >= 25 && rndAll <= 34) {
         SwalDisconnectedCorrupt();
       } else {
-        SwalDisconnected();
+        // SwalDisconnected();
       }
     }
   }, [
@@ -328,7 +328,7 @@ function App() {
       if (rndAll >= 35 && rndAll <= 46) {
         SwalDisconnectedCorrupt();
       } else {
-        SwalDisconnected();
+        // SwalDisconnected();
       }
     }
   }, [
@@ -378,7 +378,7 @@ function App() {
       if (rndAll >= 47 && rndAll <= 49) {
         SwalDisconnectedCorrupt();
       } else {
-        SwalDisconnected();
+        // SwalDisconnected();
       }
     }
   }, [laundaryWashing, laundaryLight01, laundaryLight02]);
@@ -593,7 +593,7 @@ function App() {
             }
           />
           <Route path="/mask-group" element={<MaskGroup />} />
-          <Route path="/congratulation" element={<Congratulation />} />
+          <Route path="/result" element={<Congratulation />} />
           <Route path="/sorry" element={<Sorry />} />
           <Route
             path="/first-floor"

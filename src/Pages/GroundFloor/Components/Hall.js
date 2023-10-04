@@ -28,7 +28,7 @@ const Hall = (props) => {
     (state) => state.CounterRemainingDevicesReducer.count
   );
   const redirectSorry = () => {
-    navigate("/congratulation");
+    navigate("/result");
   };
 
   const dispatch = useDispatch();

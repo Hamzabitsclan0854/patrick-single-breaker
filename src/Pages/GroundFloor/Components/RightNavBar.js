@@ -182,9 +182,9 @@ const RightNavBar = (props) => {
     //   props.setFirstGroupBreakerType("red");
     //   props.setIsFirstGroupBreaker(true);
     // }, 3000);
-    // navigate("/congratulation");
+    // navigate("/result");
     setTimeout(() => {
-      navigate("/congratulation");
+      navigate("/result");
     }, 500);
   };
 
@@ -455,7 +455,7 @@ const RightNavBar = (props) => {
     //   props.setIsKitchenBreaker(true);
     // }, 3000);
     setTimeout(() => {
-      navigate("/congratulation");
+      navigate("/result");
     }, 500);
   };
 
@@ -632,9 +632,9 @@ const RightNavBar = (props) => {
     //   props.setGroupThreeBreakerType("red");
     //   props.setIsGroupThreeBreaker(true);
     // }, 3000);
-    // navigate("/congratulation");
+    // navigate("/result");
     setTimeout(() => {
-      navigate("/congratulation");
+      navigate("/result");
     }, 500);
   };
   const groupThreeBreakerHandlerOff = () => {
@@ -891,9 +891,9 @@ const RightNavBar = (props) => {
     //   props.setGroupFourBreakerType("red");
     //   props.setIsGroupFourBreaker(true);
     // }, 3000);
-    // navigate("/congratulation");
+    // navigate("/result");
     setTimeout(() => {
-      navigate("/congratulation");
+      navigate("/result");
     }, 500);
   };
   const groupFourBreakerHandlerOff = () => {
@@ -1166,9 +1166,9 @@ const RightNavBar = (props) => {
     //   props.setgroupFiveBreakerType("red");
     //   props.setIsGroupFiveBreaker(true);
     // }, 3000);
-    // navigate("/congratulation");
+    // navigate("/result");
     setTimeout(() => {
-      navigate("/congratulation");
+      navigate("/result");
     }, 500);
   };
 
@@ -1509,9 +1509,9 @@ const RightNavBar = (props) => {
     //   props.setLaundaryBreakerType("red");
     //   props.setIsLaundaryBreaker(true);
     // }, 3000);
-    // navigate("/congratulation");
+    // navigate("/result");
     setTimeout(() => {
-      navigate("/congratulation");
+      navigate("/result");
     }, 500);
   };
 
@@ -1618,7 +1618,7 @@ const RightNavBar = (props) => {
   const finishBreakerHandler = () => {
     // FinishSwal();
     setTimeout(() => {
-      navigate("/congratulation");
+      navigate("/result");
     }, 500);
     // if (rand >= 1 && rand <= 49) {
     //start my code for breaker pop up
@@ -1966,7 +1966,7 @@ const RightNavBar = (props) => {
       {showFinishBtn && (
         <div className="set-position-bottom-finish">
           <button className="set-btn-finish" onClick={finishBreakerHandler}>
-            Finish
+            I AM READY
           </button>
         </div>
       )}

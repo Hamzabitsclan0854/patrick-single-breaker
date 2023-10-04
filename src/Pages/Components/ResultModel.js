@@ -62,7 +62,7 @@ const ResultModel = (props) => {
 
   const handleOk = () => {
     props.setIsModalOpen(false);
-    navigate("/congratulation");
+    navigate("/result");
     dispatch(isHurray(true));
     hurraySound();
 
